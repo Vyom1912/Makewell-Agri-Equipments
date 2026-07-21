@@ -6,11 +6,36 @@
     <meta
       name="description"
       content="Makewell Agri Equipments — manufacturer and exporter of forged agricultural hand tools: shovels, axes, mattocks, hoes and spades. Based in Himatnagar, Gujarat, India." />
-    <title>
-      Makewell Agri Equipments | Forged Agricultural Tools — Himatnagar, Gujarat
-    </title>
+    <title>Makewell Agri Equipments | Forged Agricultural Tools — Himatnagar, Gujarat</title>
     <link rel="icon" type="image/svg+xml" href="/Makewell-Agri-Equipments/favicon.svg" />
-    <script type="module" crossorigin src="/Makewell-Agri-Equipments/assets/index-Bi43rVkx.js"></script>
+
+    <!--
+      GitHub Pages SPA redirect handler.
+      Decodes the path encoded by 404.html (?p=/route&q=query)
+      and replaces the URL so React Router sees the correct route.
+      Source: https://github.com/rafgraph/spa-github-pages
+    -->
+    <script>
+      (function(l) {
+        if (l.search) {
+          var params = {};
+          l.search.slice(1).split('&').forEach(function(pair) {
+            var parts = pair.split('=');
+            if (parts.length === 2) params[parts[0]] = decodeURIComponent(parts[1].replace(/\+/g, ' '));
+          });
+          if (params.p !== undefined) {
+            window.history.replaceState(
+              null, null,
+              l.pathname +
+              params.p.replace(/~and~/g, '&') +
+              (params.q ? '?' + params.q.replace(/~and~/g, '&') : '') +
+              l.hash
+            );
+          }
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin src="/Makewell-Agri-Equipments/assets/index-DPPVZcti.js"></script>
     <link rel="stylesheet" crossorigin href="/Makewell-Agri-Equipments/assets/index-BWRiUSCc.css">
   </head>
   <body>
