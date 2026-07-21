@@ -73,7 +73,7 @@ function AppShell() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Makewell-Agri-Equipments">
       <ScrollToTop />
       <AppShell />
     </BrowserRouter>
