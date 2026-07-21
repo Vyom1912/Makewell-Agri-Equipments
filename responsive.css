@@ -1,0 +1,126 @@
+/* ============================================================
+   MAKEWELL AGRI EQUIPMENTS — responsive.css
+   All breakpoints, loaded after style.css.
+   ============================================================ */
+
+/* ── Tablet  ≤ 1024px ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+
+  .container            { padding: 0 32px; }
+
+  /* Hero */
+  .hero-ruler-row       { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
+
+  /* About */
+  .about-grid           { grid-template-columns: 1fr; gap: 60px; }
+  .about-visual         { position: static; max-width: 440px; }
+  .line-illustration    { padding: 48px; }
+
+  /* Products */
+  .product-row          { grid-template-columns: 52px 56px 1fr; gap: 20px; }
+
+  /* Manufacturing */
+  .process-rail-inner   { grid-template-columns: repeat(3, 1fr); row-gap: 36px; }
+  .grid-ruled           { grid-template-columns: repeat(2, 1fr); }
+
+  /* Sections with grid-2 */
+  .customize .grid-2,
+  .export .grid-2       { grid-template-columns: 1fr; gap: 48px; }
+
+  /* Testimonials */
+  .testi-grid           { grid-template-columns: repeat(2, 1fr); }
+
+  /* Contact */
+  .contact-grid         { grid-template-columns: 1fr; gap: 56px; }
+
+  /* Footer */
+  .footer-grid          { grid-template-columns: 1fr 1fr; gap: 40px; row-gap: 44px; }
+
+  /* Custom banner */
+  .custom-banner        { padding: 40px 32px; flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Mobile  ≤ 768px ────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .container            { padding: 0 20px; }
+  .section              { padding: 96px 0; }
+
+  /* Navbar */
+  .nav-links            { display: none; }
+  .hamburger            { display: flex; }
+  .mobile-menu          { padding: 72px 28px 44px; }
+
+  /* Hero */
+  .hero                 { height: auto; min-height: 100vh; padding: 96px 0 56px; }
+  .hero-ruler-row       { grid-template-columns: 1fr 1fr; }
+  .hero-actions         { flex-direction: column; }
+  .hero-actions .btn    { width: 100%; justify-content: center; }
+  .hero-topline .loc    { display: none; }
+  .scroll-cue           { display: none; }
+
+  /* About */
+  .about-copy p         { max-width: 100%; }
+  .stat-row             { grid-template-columns: 1fr; }
+  .stat-row .cell       { border-right: none; border-bottom: 1px solid var(--line); padding: 20px 0; text-align: left; }
+  .stat-row .cell:last-child { border-bottom: none; }
+
+  /* Products */
+  .product-row          { grid-template-columns: 36px 1fr; gap: 14px; padding: 22px 12px; }
+  .product-row .icon-box{ display: none; }
+
+  /* Manufacturing */
+  .process-rail-inner   { grid-template-columns: 1fr 1fr; }
+  .process-rail .track  { display: none; }
+  .grid-ruled           { grid-template-columns: 1fr; }
+
+  /* Testimonials */
+  .testi-grid           { grid-template-columns: 1fr; gap: 16px; }
+  .testi-trust-bar      { gap: 20px; }
+
+  /* Contact form */
+  .form-row             { grid-template-columns: 1fr; }
+  .form-card            { padding: 28px 20px; }
+  .contact-map iframe   { height: 220px !important; }
+
+  /* Export */
+  .panel-glass          { padding: 24px; }
+
+  /* Footer */
+  .footer-grid          { grid-template-columns: 1fr 1fr; gap: 28px; row-gap: 36px; }
+  .footer-brand         { grid-column: 1 / -1; }
+  .footer-bottom        { flex-direction: column; text-align: center; gap: 6px; }
+}
+
+/* ── Small mobile  ≤ 480px ──────────────────────────────────── */
+@media (max-width: 480px) {
+
+  .container            { padding: 0 16px; }
+
+  /* Hero */
+  .hero h1              { font-size: 30px; }
+  .hero-ruler-row       { grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* Products */
+  .product-row          { grid-template-columns: 1fr; }
+  .product-row .row-num { display: none; }
+
+  /* About badges */
+  .badge-group          { gap: 6px; }
+  .badge                { font-size: 10px; padding: 5px 10px; }
+
+  /* Testimonials */
+  .testi-trust-bar      { gap: 14px; }
+  .ttb-item             { font-size: 10px; }
+
+  /* Footer */
+  .footer-grid          { grid-template-columns: 1fr; gap: 28px; }
+  .footer-brand         { grid-column: 1; }
+
+  /* Mobile menu */
+  .mobile-menu          { padding: 72px 20px 40px; }
+  .mobile-menu a        { font-size: 22px; }
+
+  /* Toast */
+  .toast                { right: 16px; left: 16px; bottom: 16px; text-align: center; }
+}
