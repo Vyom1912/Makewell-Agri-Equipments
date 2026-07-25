@@ -28,7 +28,7 @@ const HIGHLIGHTS = [
     icon: '🎨',
     title: 'Custom Manufacturing',
     desc: 'Your blade shape, handle length, finish and brand — manufactured to your exact spec.',
-    to: '/contact',
+    to: '/contact#form',
     cta: 'Start Custom Order',
   },
   {
@@ -91,7 +91,7 @@ export default function Home() {
               <Link to="/products" className="btn btn-primary">
                 Explore Products <ArrowIcon />
               </Link>
-              <Link to="/contact" className="btn btn-on-dark">
+              <Link to="/contact#form" className="btn btn-on-dark">
                 Become a Dealer
               </Link>
             </div>
@@ -202,7 +202,7 @@ export default function Home() {
         title="Ready to source quality tools?"
         subtitle="Tell us your requirement and we'll respond within 24 hours."
         primaryLabel="Send an Inquiry"
-        primaryTo="/contact"
+        primaryTo="/contact#form"
         secondLabel="View Products"
         secondTo="/products"
       />

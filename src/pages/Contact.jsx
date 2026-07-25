@@ -1,8 +1,15 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import PageHero  from '../components/PageHero';
 import ArrowIcon from '../components/ArrowIcon';
 import CtaStrip  from '../components/CtaStrip';
+
+/* ── Real contact details ─────────────────────────────────── */
+export const PHONE_RAW      = '+919825270190';           // for tel: / wa.me
+export const PHONE_DISPLAY  = '+91 98252 70190';
+export const EMAIL          = 'makewellagri@gmail.com';
+export const WHATSAPP_URL   = `https://wa.me/${PHONE_RAW.replace('+', '')}`;
 
 const DETAILS = [
   {
@@ -11,15 +18,29 @@ const DETAILS = [
   },
   {
     ic: '📞', label: 'Phone / WhatsApp',
-    value: <><a href="tel:+919999999999">+91 99999 99999</a><br /><span className="cic-dim">Mon–Sat, 9 am – 6 pm IST</span></>,
+    value: (
+      <>
+        <a href={`tel:${PHONE_RAW}`}>{PHONE_DISPLAY}</a>
+        <br />
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="cic-dim">
+          WhatsApp ↗
+        </a>
+      </>
+    ),
   },
   {
     ic: '✉️', label: 'Email',
-    value: <><a href="mailto:info@makewellagri.com">info@makewellagri.com</a><br /><a href="mailto:export@makewellagri.com">export@makewellagri.com</a></>,
+    value: <><a href={`mailto:${EMAIL}`}>{EMAIL}</a></>,
   },
   {
     ic: '🕐', label: 'Business Hours',
-    value: <>Monday – Saturday: 9:00 am – 6:00 pm IST<br /><span className="cic-dim">Sunday: Closed</span></>,
+    value: (
+      <>
+        Mon, Wed – Sun: 9:00 am – 6:00 pm IST
+        <br />
+        <span className="cic-dim">Tuesday: Closed</span>
+      </>
+    ),
   },
 ];
 
@@ -28,6 +49,17 @@ export default function Contact({ showToast }) {
   const mainRef  = useRef(null);
   useReveal(infoRef);
   useReveal(mainRef);
+
+  /* Scroll to form when URL has #form */
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash === '#form') {
+      const el = document.getElementById('contact-form');
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      }
+    }
+  }, [hash]);
 
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', country: '', product: '', message: '' });
   const [sending, setSending] = useState(false);
@@ -76,7 +108,7 @@ export default function Contact({ showToast }) {
       </section>
 
       {/* ── 2. Map + Form — white section ── */}
-      <section className="section" ref={mainRef}>
+      <section className="section" ref={mainRef} id="contact-form">
         <div className="container">
           <div className="contact-grid">
 
@@ -188,12 +220,12 @@ export default function Contact({ showToast }) {
 
       {/* ── 3. CTA — dark (uses shared CtaStrip) ── */}
       <CtaStrip
-        title="Prefer to call or email?"
+        title="Prefer to call or WhatsApp?"
         subtitle="Reach us directly — our team responds same day during business hours."
         primaryLabel="WhatsApp Us"
-        primaryTo="/contact"
-        secondLabel="Send Email"
-        secondTo="/contact"
+        primaryHref={WHATSAPP_URL}
+        secondLabel={`Email: ${EMAIL}`}
+        secondHref={`mailto:${EMAIL}`}
       />
     </>
   );

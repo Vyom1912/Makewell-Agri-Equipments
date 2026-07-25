@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { PHONE_RAW, PHONE_DISPLAY, EMAIL, WHATSAPP_URL } from '../pages/Contact';
 
 const QUICK_LINKS = [
   { to: '/',         label: 'Home' },
@@ -15,7 +16,7 @@ const PRODUCT_LINKS = [
   { to: '/products', label: 'Pickaxes & Mattocks' },
   { to: '/products', label: 'Hoes & Rakes' },
   { to: '/products', label: 'Crowbars & Iron Bars' },
-  { to: '/contact',  label: 'Custom / OEM Tools' },
+  { to: '/contact#form',  label: 'Custom / OEM Tools' },
 ];
 
 export default function Footer() {
@@ -37,7 +38,7 @@ export default function Footer() {
             <div className="footer-social">
               <a href="#" aria-label="Facebook">f</a>
               <a href="#" aria-label="LinkedIn">in</a>
-              <a href="#" aria-label="WhatsApp">W</a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">W</a>
               <a href="#" aria-label="Instagram">ig</a>
             </div>
           </div>
@@ -71,9 +72,10 @@ export default function Footer() {
             <h5>Contact</h5>
             <ul className="fc-contact">
               <li>📍 Vaktapur, Himatnagar – 383001<br />Sabarkantha, Gujarat, India</li>
-              <li>📞 <a href="tel:+919999999999">+91 99999 99999</a></li>
-              <li>✉️ <a href="mailto:info@makewellagri.com">info@makewellagri.com</a></li>
-              <li>✉️ <a href="mailto:export@makewellagri.com">export@makewellagri.com</a></li>
+              <li>📞 <a href={`tel:${PHONE_RAW}`}>{PHONE_DISPLAY}</a></li>
+              <li>💬 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+              <li>✉️ <a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+              <li>🕐 Mon, Wed–Sun: 9 am – 6 pm IST<br /><span style={{opacity:.65}}>Tuesday: Closed</span></li>
             </ul>
           </div>
 

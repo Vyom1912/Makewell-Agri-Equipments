@@ -64,7 +64,7 @@ export default function Navbar() {
                 {item.label}
               </NavLink>
             ))}
-            <Link to="/contact" className="btn nav-cta">
+            <Link to="/contact#form" className="btn nav-cta">
               Get a Quote
             </Link>
           </nav>
@@ -119,7 +119,7 @@ export default function Navbar() {
           ))}
         </nav>
         <div className="mobile-menu-footer">
-          <Link to="/contact" className="btn btn-primary btn-full" onClick={() => setMenuOpen(false)}>
+          <Link to="/contact#form" className="btn btn-primary btn-full" onClick={() => setMenuOpen(false)}>
             Get a Quote
           </Link>
         </div>

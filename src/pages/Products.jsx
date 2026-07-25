@@ -4,50 +4,271 @@ import { useReveal } from '../hooks/useReveal';
 import PageHero  from '../components/PageHero';
 import ArrowIcon from '../components/ArrowIcon';
 
-/* ── Inline SVG tool silhouettes ── */
-const SvgShovel = () => (
-  <svg viewBox="0 0 60 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+/* ══════════════════════════════════════════════════
+   SVG silhouettes — one per variant
+   ══════════════════════════════════════════════════ */
+
+/* ── Axes ── */
+// Single-bit felling axe: long handle, single blade one side
+const SvgAxeSingleBit = () => (
+  <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="37" y="28" width="6" height="102" rx="3" fill="currentColor" opacity=".9"/>
+    <path d="M40 30 L10 6 Q4 0 9 6 L20 34 Q29 40 40 36Z" fill="currentColor" opacity=".9"/>
+    <path d="M40 30 Q46 20 44 36Z" fill="currentColor" opacity=".5"/>
+    <line x1="10" y1="6" x2="20" y2="34" stroke="currentColor" strokeWidth="1.5" opacity=".5"/>
+  </svg>
+);
+
+// Double-bit felling axe: blade on both sides
+const SvgAxeDoubleBit = () => (
+  <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="37" y="28" width="6" height="102" rx="3" fill="currentColor" opacity=".9"/>
+    <path d="M40 30 L10 8 Q4 2 9 8 L20 34 Q29 40 40 36Z" fill="currentColor" opacity=".9"/>
+    <path d="M40 30 L66 8 Q74 2 69 8 L58 34 Q50 40 40 36Z" fill="currentColor" opacity=".75"/>
+  </svg>
+);
+
+// Splitting axe: wide wedge head, short-ish handle
+const SvgAxeSplitting = () => (
+  <svg viewBox="0 0 90 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="42" y="40" width="6" height="90" rx="3" fill="currentColor" opacity=".9"/>
+    {/* wide wedge */}
+    <path d="M45 42 L8 22 Q2 16 8 20 L18 46 Q30 54 45 50Z" fill="currentColor" opacity=".9"/>
+    <path d="M45 42 L78 22 Q84 16 78 20 L68 46 Q56 54 45 50Z" fill="currentColor" opacity=".75"/>
+    {/* thick poll */}
+    <rect x="38" y="38" width="14" height="8" rx="2" fill="currentColor" opacity=".6"/>
+  </svg>
+);
+
+// Hatchet: short handle, compact head
+const SvgAxeHatchet = () => (
+  <svg viewBox="0 0 70 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="32" y="36" width="6" height="74" rx="3" fill="currentColor" opacity=".9"/>
+    <path d="M35 38 L12 20 Q6 14 11 18 L20 40 Q27 46 35 43Z" fill="currentColor" opacity=".9"/>
+    <path d="M35 38 Q42 28 40 44Z" fill="currentColor" opacity=".5"/>
+    <rect x="30" y="34" width="10" height="6" rx="1.5" fill="currentColor" opacity=".6"/>
+  </svg>
+);
+
+// Hunter's axe: curved belly, compact
+const SvgAxeHunter = () => (
+  <svg viewBox="0 0 70 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="32" y="32" width="5" height="88" rx="2.5" fill="currentColor" opacity=".9"/>
+    <path d="M34 34 Q16 18 12 28 Q8 42 22 46 Q28 48 34 44Z" fill="currentColor" opacity=".9"/>
+    <path d="M34 34 Q40 28 39 44Z" fill="currentColor" opacity=".5"/>
+  </svg>
+);
+
+/* ── Shovels ── */
+// Round-point shovel
+const SvgShovelRoundPoint = () => (
+  <svg viewBox="0 0 60 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="27" y="0" width="6" height="62" rx="3" fill="currentColor" opacity=".9"/>
+    <rect x="20" y="56" width="20" height="5" rx="2" fill="currentColor"/>
+    <path d="M18 61 Q10 76 12 93 Q15 110 30 114 Q45 110 48 93 Q50 76 42 61Z" fill="currentColor" opacity=".85"/>
+    <ellipse cx="30" cy="61" rx="12" ry="3" fill="currentColor"/>
+  </svg>
+);
+
+// Square-point shovel: flat bottom
+const SvgShovelSquarePoint = () => (
+  <svg viewBox="0 0 60 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="27" y="0" width="6" height="62" rx="3" fill="currentColor" opacity=".9"/>
+    <rect x="20" y="56" width="20" height="5" rx="2" fill="currentColor"/>
+    <rect x="16" y="61" width="28" height="48" rx="2" fill="currentColor" opacity=".85"/>
+    <rect x="16" y="61" width="28" height="4" fill="currentColor" opacity=".5"/>
+  </svg>
+);
+
+// Trenching shovel: narrow blade
+const SvgShovelTrenching = () => (
+  <svg viewBox="0 0 60 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="27" y="0" width="6" height="60" rx="3" fill="currentColor" opacity=".9"/>
-    <rect x="20" y="55" width="20" height="5" rx="2" fill="currentColor"/>
-    <path d="M18 60 Q10 75 12 92 Q15 108 30 112 Q45 108 48 92 Q50 75 42 60Z" fill="currentColor" opacity=".85"/>
-    <ellipse cx="30" cy="60" rx="12" ry="3" fill="currentColor"/>
+    <rect x="22" y="54" width="16" height="5" rx="2" fill="currentColor"/>
+    <rect x="24" y="59" width="12" height="42" rx="2" fill="currentColor" opacity=".85"/>
+    <path d="M24 101 L30 116 L36 101Z" fill="currentColor" opacity=".9"/>
   </svg>
 );
 
-const SvgAxe = () => (
-  <svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="37" y="30" width="6" height="90" rx="3" fill="currentColor" opacity=".9"/>
-    <path d="M40 30 L14 8 Q8 2 12 8 L22 32 Q30 38 40 36Z" fill="currentColor" opacity=".85"/>
-    <path d="M40 30 L62 15 Q70 10 67 16 L56 34 Q48 40 40 36Z" fill="currentColor" opacity=".7"/>
-    <line x1="14" y1="8" x2="22" y2="32" stroke="currentColor" strokeWidth="1.5" opacity=".6"/>
+// Garden spade: flat straight blade
+const SvgShovelSpade = () => (
+  <svg viewBox="0 0 60 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="27" y="0" width="6" height="58" rx="3" fill="currentColor" opacity=".9"/>
+    {/* D-grip */}
+    <path d="M24 4 Q18 4 18 10 Q18 16 24 16" stroke="currentColor" strokeWidth="4" fill="none" opacity=".7" strokeLinecap="round"/>
+    <rect x="20" y="52" width="20" height="5" rx="2" fill="currentColor"/>
+    <rect x="17" y="57" width="26" height="50" rx="1" fill="currentColor" opacity=".85"/>
+    <rect x="17" y="57" width="26" height="4" fill="currentColor" opacity=".5"/>
   </svg>
 );
 
-const SvgMattock = () => (
+// Transplanting spade: narrow pointed blade
+const SvgShovelTransplanting = () => (
+  <svg viewBox="0 0 60 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="27" y="0" width="6" height="60" rx="3" fill="currentColor" opacity=".9"/>
+    <rect x="22" y="54" width="16" height="5" rx="2" fill="currentColor"/>
+    <path d="M22 59 L38 59 L36 90 L30 110 L24 90Z" fill="currentColor" opacity=".85"/>
+  </svg>
+);
+
+/* ── Mattocks ── */
+// Cutter mattock: wide adze + narrow pick
+const SvgMattockCutter = () => (
+  <svg viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="52" y="38" width="6" height="92" rx="3" fill="currentColor" opacity=".9"/>
+    <path d="M55 42 L10 24 Q4 18 10 24 L28 46 Q38 50 55 46Z" fill="currentColor" opacity=".9"/>
+    <rect x="55" y="24" width="42" height="16" rx="4" fill="currentColor" opacity=".75"/>
+    <path d="M97 24 Q106 18 104 28 L97 40Z" fill="currentColor" opacity=".6"/>
+  </svg>
+);
+
+// Pick mattock: narrow pick both ends
+const SvgMattockPick = () => (
+  <svg viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="57" y="36" width="6" height="94" rx="3" fill="currentColor" opacity=".9"/>
+    <path d="M60 40 L14 26 Q6 20 12 26 L30 44 Q42 48 60 44Z" fill="currentColor" opacity=".9"/>
+    <path d="M60 40 L106 26 Q114 20 108 26 L90 44 Q78 48 60 44Z" fill="currentColor" opacity=".75"/>
+  </svg>
+);
+
+// Grub hoe / adze: wide horizontal blade
+const SvgMattockAdze = () => (
   <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="47" y="35" width="6" height="85" rx="3" fill="currentColor" opacity=".9"/>
-    <path d="M50 38 L12 22 Q6 18 10 24 L26 42 Q36 46 50 42Z" fill="currentColor" opacity=".85"/>
-    <rect x="50" y="22" width="36" height="14" rx="4" fill="currentColor" opacity=".75"/>
-    <path d="M86 22 Q94 18 93 26 L86 36Z" fill="currentColor" opacity=".65"/>
+    <rect x="14" y="22" width="72" height="18" rx="4" fill="currentColor" opacity=".85"/>
+    <path d="M14 32 Q8 32 8 40 L14 40Z" fill="currentColor" opacity=".65"/>
+    <path d="M86 32 Q92 32 92 40 L86 40Z" fill="currentColor" opacity=".65"/>
   </svg>
 );
 
-const SvgHoe = () => (
-  <svg viewBox="0 0 80 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <line x1="20" y1="5" x2="60" y2="75" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".9"/>
-    <rect x="8" y="68" width="36" height="10" rx="3" fill="currentColor" opacity=".85"/>
-    <rect x="8" y="62" width="8" height="22" rx="2" fill="currentColor" opacity=".7"/>
+// Heavy pickaxe: single long pick
+const SvgMattockPickaxe = () => (
+  <svg viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="57" y="34" width="6" height="96" rx="3" fill="currentColor" opacity=".9"/>
+    <path d="M60 38 L8 20 Q2 12 8 20 L22 44 Q38 50 60 44Z" fill="currentColor" opacity=".9"/>
+    <path d="M60 38 L108 28 Q116 22 112 30 L100 42 Q84 48 60 44Z" fill="currentColor" opacity=".7"/>
   </svg>
 );
 
-const SvgCrowbar = () => (
-  <svg viewBox="0 0 40 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="17" y="5" width="6" height="95" rx="3" fill="currentColor" opacity=".9"/>
-    <path d="M17 100 Q10 108 8 115 L17 112Z" fill="currentColor" opacity=".8"/>
-    <path d="M23 100 Q30 108 32 115 L23 112Z" fill="currentColor" opacity=".65"/>
-    <rect x="14" y="2" width="12" height="8" rx="2" fill="currentColor" opacity=".7"/>
+// Railroad pick: heavier, symmetrical picks
+const SvgMattockRailroad = () => (
+  <svg viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="62" y="34" width="6" height="96" rx="3" fill="currentColor" opacity=".9"/>
+    <path d="M65 38 L8 18 Q0 10 8 18 L24 46 Q42 54 65 46Z" fill="currentColor" opacity=".9"/>
+    <path d="M65 38 L122 18 Q130 10 122 18 L106 46 Q88 54 65 46Z" fill="currentColor" opacity=".75"/>
+    <rect x="56" y="34" width="18" height="10" rx="2" fill="currentColor" opacity=".5"/>
   </svg>
 );
+
+/* ── Hoes ── */
+// Draw hoe wide blade
+const SvgHoeDrawWide = () => (
+  <svg viewBox="0 0 90 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="22" y1="5" x2="62" y2="82" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".9"/>
+    <rect x="6" y="76" width="48" height="12" rx="3" fill="currentColor" opacity=".85"/>
+    <rect x="6" y="70" width="10" height="24" rx="2" fill="currentColor" opacity=".7"/>
+  </svg>
+);
+
+// Draw hoe narrow blade
+const SvgHoeDrawNarrow = () => (
+  <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="22" y1="5" x2="58" y2="78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".9"/>
+    <rect x="14" y="72" width="28" height="12" rx="3" fill="currentColor" opacity=".85"/>
+    <rect x="14" y="66" width="8" height="24" rx="2" fill="currentColor" opacity=".7"/>
+  </svg>
+);
+
+// Stirrup / hula hoe: loop blade
+const SvgHoeStirrup = () => (
+  <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="22" y1="5" x2="50" y2="72" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".9"/>
+    {/* oval loop */}
+    <ellipse cx="40" cy="88" rx="20" ry="10" stroke="currentColor" strokeWidth="5" fill="none" opacity=".85"/>
+    <line x1="50" y1="80" x2="50" y2="72" stroke="currentColor" strokeWidth="5" opacity=".85"/>
+    <line x1="30" y1="80" x2="28" y2="92" stroke="currentColor" strokeWidth="5" opacity=".85"/>
+  </svg>
+);
+
+// Garden rake: fan of tines
+const SvgHoeRake = () => (
+  <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="40" y1="5" x2="40" y2="80" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".9"/>
+    <rect x="8" y="80" width="64" height="7" rx="2" fill="currentColor" opacity=".85"/>
+    {[8,16,24,32,40,48,56,64,72].map((x) => (
+      <line key={x} x1={x+4} y1="87" x2={x+2} y2="108" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity=".75"/>
+    ))}
+  </svg>
+);
+
+// Warren hoe: pointed triangular blade
+const SvgHoeWarren = () => (
+  <svg viewBox="0 0 80 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="22" y1="5" x2="50" y2="72" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".9"/>
+    <path d="M28 74 L52 74 L40 102Z" fill="currentColor" opacity=".85"/>
+    <rect x="28" y="68" width="24" height="8" rx="2" fill="currentColor" opacity=".6"/>
+  </svg>
+);
+
+/* ── Crowbars ── */
+// Hexagonal crowbar: long straight bar, hex cross-section hint
+const SvgCrowbarHex = () => (
+  <svg viewBox="0 0 40 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="16" y="4" width="8" height="112" rx="1" fill="currentColor" opacity=".9"/>
+    {/* hex end hint */}
+    <polygon points="20,4 24,7 24,13 20,16 16,13 16,7" fill="currentColor" opacity=".7"/>
+    <path d="M16 116 Q10 122 8 128 L16 124Z" fill="currentColor" opacity=".8"/>
+    <path d="M24 116 Q30 122 32 128 L24 124Z" fill="currentColor" opacity=".65"/>
+  </svg>
+);
+
+// Flat pry bar: flat profile, angled tip
+const SvgCrowbarFlatPry = () => (
+  <svg viewBox="0 0 40 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="14" y="4" width="12" height="4" rx="1" fill="currentColor" opacity=".9"/>
+    <rect x="17" y="8" width="6" height="104" rx="1" fill="currentColor" opacity=".9"/>
+    {/* angled chisel tip */}
+    <path d="M17 112 L14 126 L23 112Z" fill="currentColor" opacity=".85"/>
+  </svg>
+);
+
+// Tamping rod: blunt both ends
+const SvgCrowbarTamping = () => (
+  <svg viewBox="0 0 40 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="17" y="8" width="6" height="114" rx="1" fill="currentColor" opacity=".9"/>
+    <rect x="13" y="4" width="14" height="8" rx="2" fill="currentColor" opacity=".8"/>
+    <rect x="13" y="118" width="14" height="8" rx="2" fill="currentColor" opacity=".8"/>
+  </svg>
+);
+
+// Point bar: one sharp point end
+const SvgCrowbarPoint = () => (
+  <svg viewBox="0 0 40 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="17" y="4" width="6" height="108" rx="1" fill="currentColor" opacity=".9"/>
+    <rect x="13" y="2" width="14" height="6" rx="2" fill="currentColor" opacity=".8"/>
+    {/* sharp point */}
+    <path d="M17 112 L20 128 L23 112Z" fill="currentColor" opacity=".9"/>
+  </svg>
+);
+
+// Custom-cut bar: dashed cut marks
+const SvgCrowbarCustom = () => (
+  <svg viewBox="0 0 40 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="17" y="4" width="6" height="122" rx="1" fill="currentColor" opacity=".9"/>
+    <rect x="13" y="2" width="14" height="6" rx="2" fill="currentColor" opacity=".7"/>
+    <rect x="13" y="122" width="14" height="6" rx="2" fill="currentColor" opacity=".7"/>
+    {/* cut mark lines */}
+    <line x1="10" y1="50" x2="30" y2="50" stroke="currentColor" strokeWidth="2" strokeDasharray="4 3" opacity=".6"/>
+    <line x1="10" y1="80" x2="30" y2="80" stroke="currentColor" strokeWidth="2" strokeDasharray="4 3" opacity=".6"/>
+  </svg>
+);
+
+/* ── Tab-level family SVGs (kept for the tab bar) ── */
+const SvgShovel = SvgShovelRoundPoint;
+const SvgAxe    = SvgAxeSingleBit;
+const SvgMattock = SvgMattockCutter;
+const SvgHoe    = SvgHoeDrawWide;
+const SvgCrowbar = SvgCrowbarHex;
 
 /* ── Tool family browser data ── */
 const TOOL_FAMILIES = [
@@ -60,11 +281,11 @@ const TOOL_FAMILIES = [
     tagline: 'Drop-forged for every cut.',
     desc: 'From single-bit felling axes to compact hatchets — each head is closed-die forged from high-carbon steel and precision-ground.',
     variants: [
-      { name: 'Single-Bit Felling Axe',  detail: '1.4 – 2.2 kg · Hickory or fibreglass handle' },
-      { name: 'Double-Bit Felling Axe',  detail: '1.8 – 2.6 kg · Straight handle' },
-      { name: 'Splitting Axe',           detail: '2.0 – 3.5 kg · Wedge-profile head' },
-      { name: 'Hatchet',                 detail: '0.5 – 0.8 kg · Short handle, one-hand use' },
-      { name: "Hunter's Axe",            detail: '0.7 – 1.0 kg · Curved edge, compact' },
+      { name: 'Single-Bit Felling Axe',  detail: '1.4 – 2.2 kg · Hickory or fibreglass handle', SvgComp: SvgAxeSingleBit },
+      { name: 'Double-Bit Felling Axe',  detail: '1.8 – 2.6 kg · Straight handle',              SvgComp: SvgAxeDoubleBit },
+      { name: 'Splitting Axe',           detail: '2.0 – 3.5 kg · Wedge-profile head',            SvgComp: SvgAxeSplitting },
+      { name: 'Hatchet',                 detail: '0.5 – 0.8 kg · Short handle, one-hand use',    SvgComp: SvgAxeHatchet },
+      { name: "Hunter's Axe",            detail: '0.7 – 1.0 kg · Curved edge, compact',          SvgComp: SvgAxeHunter },
     ],
   },
   {
@@ -76,11 +297,11 @@ const TOOL_FAMILIES = [
     tagline: 'Every blade shape, any depth.',
     desc: 'Round-point, square-point, trenching and transplanting — heat-treated heads with wooden, fibreglass or steel handles.',
     variants: [
-      { name: 'Round-Point Shovel',      detail: '0.9 – 1.4 kg head · D-grip or long handle' },
-      { name: 'Square-Point Shovel',     detail: '1.0 – 1.5 kg head · For loose material' },
-      { name: 'Trenching Shovel',        detail: 'Narrow blade · 28 cm depth reach' },
-      { name: 'Garden Spade',            detail: 'Flat blade · Border or heavy-duty' },
-      { name: 'Transplanting Spade',     detail: 'Pointed, narrow · Minimal root damage' },
+      { name: 'Round-Point Shovel',    detail: '0.9 – 1.4 kg head · D-grip or long handle', SvgComp: SvgShovelRoundPoint },
+      { name: 'Square-Point Shovel',   detail: '1.0 – 1.5 kg head · For loose material',    SvgComp: SvgShovelSquarePoint },
+      { name: 'Trenching Shovel',      detail: 'Narrow blade · 28 cm depth reach',           SvgComp: SvgShovelTrenching },
+      { name: 'Garden Spade',          detail: 'Flat blade · Border or heavy-duty',           SvgComp: SvgShovelSpade },
+      { name: 'Transplanting Spade',   detail: 'Pointed, narrow · Minimal root damage',      SvgComp: SvgShovelTransplanting },
     ],
   },
   {
@@ -92,11 +313,11 @@ const TOOL_FAMILIES = [
     tagline: 'Built for the hardest ground.',
     desc: 'Pick mattocks, cutter mattocks and adzes — dual-head designs that break hardpan, clear roots and move heavy earth.',
     variants: [
-      { name: 'Cutter Mattock',          detail: '2.5 – 4.0 kg · Broad adze + pick' },
-      { name: 'Pick Mattock',            detail: '2.0 – 3.5 kg · Narrow pick both ends' },
-      { name: 'Grub Hoe / Adze',         detail: '1.5 – 2.5 kg · Root clearing' },
-      { name: 'Heavy Pickaxe',           detail: '3.0 – 5.0 kg · Rocky terrain' },
-      { name: 'Railroad Pick',           detail: '4.0 – 5.5 kg · Infrastructure use' },
+      { name: 'Cutter Mattock',   detail: '2.5 – 4.0 kg · Broad adze + pick',    SvgComp: SvgMattockCutter },
+      { name: 'Pick Mattock',     detail: '2.0 – 3.5 kg · Narrow pick both ends', SvgComp: SvgMattockPick },
+      { name: 'Grub Hoe / Adze', detail: '1.5 – 2.5 kg · Root clearing',          SvgComp: SvgMattockAdze },
+      { name: 'Heavy Pickaxe',   detail: '3.0 – 5.0 kg · Rocky terrain',          SvgComp: SvgMattockPickaxe },
+      { name: 'Railroad Pick',   detail: '4.0 – 5.5 kg · Infrastructure use',     SvgComp: SvgMattockRailroad },
     ],
   },
   {
@@ -108,11 +329,11 @@ const TOOL_FAMILIES = [
     tagline: 'Precision for the field.',
     desc: 'Draw hoes, stirrup hoes and garden rakes for weeding, soil preparation and cultivation across tropical and arid markets.',
     variants: [
-      { name: 'Draw Hoe – Wide Blade',   detail: '180 – 220 mm blade · Row cultivation' },
-      { name: 'Draw Hoe – Narrow Blade', detail: '100 – 140 mm blade · Between-row weeding' },
-      { name: 'Stirrup / Hula Hoe',      detail: 'Loop blade · Push-pull action' },
-      { name: 'Garden Rake',             detail: '12 – 16 tines · Soil levelling' },
-      { name: 'Warren Hoe',              detail: 'Pointed blade · Seed furrows' },
+      { name: 'Draw Hoe – Wide Blade',   detail: '180 – 220 mm blade · Row cultivation',     SvgComp: SvgHoeDrawWide },
+      { name: 'Draw Hoe – Narrow Blade', detail: '100 – 140 mm blade · Between-row weeding', SvgComp: SvgHoeDrawNarrow },
+      { name: 'Stirrup / Hula Hoe',      detail: 'Loop blade · Push-pull action',             SvgComp: SvgHoeStirrup },
+      { name: 'Garden Rake',             detail: '12 – 16 tines · Soil levelling',            SvgComp: SvgHoeRake },
+      { name: 'Warren Hoe',              detail: 'Pointed blade · Seed furrows',              SvgComp: SvgHoeWarren },
     ],
   },
   {
@@ -124,11 +345,11 @@ const TOOL_FAMILIES = [
     tagline: 'Solid iron, built to last.',
     desc: 'Hexagonal and octagonal section crowbars, flat bars and tamping rods — custom-cut lengths, multiple diameters.',
     variants: [
-      { name: 'Hexagonal Crowbar',       detail: 'Ø25 – Ø32 mm · 1.2 m – 1.8 m' },
-      { name: 'Flat Pry Bar',            detail: '25 × 8 mm section · Multiple lengths' },
-      { name: 'Tamping Rod',             detail: 'Blunt both ends · Soil compaction' },
-      { name: 'Point Bar',               detail: 'One pointed end · Rock/clay breaking' },
-      { name: 'Custom-Cut Bar',          detail: 'Any length · Any section profile' },
+      { name: 'Hexagonal Crowbar', detail: 'Ø25 – Ø32 mm · 1.2 m – 1.8 m',         SvgComp: SvgCrowbarHex },
+      { name: 'Flat Pry Bar',      detail: '25 × 8 mm section · Multiple lengths',   SvgComp: SvgCrowbarFlatPry },
+      { name: 'Tamping Rod',       detail: 'Blunt both ends · Soil compaction',       SvgComp: SvgCrowbarTamping },
+      { name: 'Point Bar',         detail: 'One pointed end · Rock/clay breaking',    SvgComp: SvgCrowbarPoint },
+      { name: 'Custom-Cut Bar',    detail: 'Any length · Any section profile',        SvgComp: SvgCrowbarCustom },
     ],
   },
 ];
@@ -253,12 +474,22 @@ export default function Products() {
   const familyRef    = useRef(null);
   const showcaseRef  = useRef(null);
   const [activeFamily,  setActiveFamily]  = useState('axes');
+  const [activeVariant, setActiveVariant] = useState(0);
   const [activeFilter,  setActiveFilter]  = useState('all');
   useReveal(listRef);
   useReveal(familyRef);
   useReveal(showcaseRef);
 
-  const activeFam = TOOL_FAMILIES.find((f) => f.id === activeFamily);
+  const activeFam     = TOOL_FAMILIES.find((f) => f.id === activeFamily);
+  const activeVar     = activeFam?.variants[activeVariant] ?? activeFam?.variants[0];
+  const IllustSvg     = activeVar?.SvgComp ?? activeFam?.SvgComp;
+
+  // Reset variant index when switching families
+  const handleFamilyChange = (id) => {
+    setActiveFamily(id);
+    setActiveVariant(0);
+  };
+
   const filtered  = activeFilter === 'all'
     ? SHOWCASE
     : SHOWCASE.filter((p) => p.filter === activeFilter);
@@ -294,7 +525,7 @@ export default function Products() {
                   <ul className="specs-list">
                     {p.specs.map((s) => <li className="tag-chip" key={s}>{s}</li>)}
                   </ul>
-                  <Link to="/contact" className="row-link">Request Sample →</Link>
+                  <Link to="/contact#form" className="row-link">Request Sample →</Link>
                 </div>
               </div>
             ))}
@@ -320,7 +551,7 @@ export default function Products() {
                 key={fam.id}
                 className={`tf-tab${activeFamily === fam.id ? ' active' : ''}`}
                 style={activeFamily === fam.id ? { '--tf-color': fam.color } : {}}
-                onClick={() => setActiveFamily(fam.id)}
+                onClick={() => handleFamilyChange(fam.id)}
               >
                 <span className="tf-tab-svg" style={{ color: activeFamily === fam.id ? fam.color : 'currentColor' }}>
                   <fam.SvgComp />
@@ -334,10 +565,14 @@ export default function Products() {
           {activeFam && (
             <div className="tf-panel reveal" key={activeFam.id} style={{ '--tf-color': activeFam.color }}>
               <div className="tf-panel-left">
-                {/* Large SVG illustration */}
+                {/* SVG illustration — swaps when a variant is selected */}
                 <div className="tf-illustration" style={{ color: activeFam.color }}>
-                  <activeFam.SvgComp />
-                  <span className="tf-illus-label">MW — {activeFam.headline.toUpperCase()}</span>
+                  <div className="tf-illus-svg" key={activeVariant}>
+                    <IllustSvg />
+                  </div>
+                  <span className="tf-illus-label">
+                    MW — {activeVar?.name?.toUpperCase() ?? activeFam.headline.toUpperCase()}
+                  </span>
                 </div>
               </div>
 
@@ -347,21 +582,47 @@ export default function Products() {
                 <p className="tf-panel-desc">{activeFam.desc}</p>
 
                 <div className="tf-variants">
-                  {activeFam.variants.map((v, i) => (
-                    <div className="tf-variant-row" key={v.name}>
-                      <span className="tf-variant-num">{String(i + 1).padStart(2, '0')}</span>
-                      <div className="tf-variant-info">
-                        <span className="tf-variant-name">{v.name}</span>
-                        <span className="tf-variant-detail">{v.detail}</span>
+                  {activeFam.variants.map((v, i) => {
+                    const VariantSvg = v.SvgComp;
+                    return (
+                      <div
+                        className={`tf-variant-row${activeVariant === i ? ' active' : ''}`}
+                        key={v.name}
+                        onClick={() => setActiveVariant(i)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && setActiveVariant(i)}
+                      >
+                        {/* Mobile inline SVG preview — visible only at ≤768px when active */}
+                        {activeVariant === i && (
+                          <div className="tf-variant-mobile-preview" aria-hidden="true">
+                            <div className="tf-illus-svg" key={`mob-${i}`}>
+                              <VariantSvg />
+                            </div>
+                            <span className="tf-illus-label">
+                              {v.name.toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+
+                        <span className="tf-variant-num">{String(i + 1).padStart(2, '0')}</span>
+                        <div className="tf-variant-info">
+                          <span className="tf-variant-name">{v.name}</span>
+                          <span className="tf-variant-detail">{v.detail}</span>
+                        </div>
+                        <Link
+                          to="/contact#form"
+                          className="tf-variant-cta"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Quote <ArrowIcon />
+                        </Link>
                       </div>
-                      <Link to="/contact" className="tf-variant-cta">
-                        Quote <ArrowIcon />
-                      </Link>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
-                <Link to="/contact" className="btn btn-on-dark" style={{ marginTop: '28px', display: 'inline-flex' }}>
+                <Link to="/contact#form" className="btn btn-on-dark" style={{ marginTop: '28px', display: 'inline-flex' }}>
                   Request Full Catalogue <ArrowIcon />
                 </Link>
               </div>
@@ -371,7 +632,7 @@ export default function Products() {
       </section>
 
       {/* ── 3. Tool Showcase — filterable cards ── */}
-      <section className="section section-alt" ref={showcaseRef}>
+      {/* <section className="section section-alt" ref={showcaseRef}>
         <div className="container">
           <div className="sec-head sec-head--row reveal">
             <div>
@@ -426,17 +687,17 @@ export default function Products() {
                     ))}
                   </div>
                   <div className="sc-actions">
-                    <Link to="/contact" className="btn btn-primary btn-sm">
+                    <Link to="/contact#form" className="btn btn-primary btn-sm">
                       Request Sample <ArrowIcon />
                     </Link>
-                    <Link to="/contact" className="sc-quote-link">Get Quote →</Link>
+                    <Link to="/contact#form" className="sc-quote-link">Get Quote →</Link>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── 4. Custom order banner ── */}
       <section className="section">
@@ -449,7 +710,7 @@ export default function Products() {
                 blade shape, steel grade, handle type, surface finish and branding.
               </p>
             </div>
-            <Link to="/contact" className="btn btn-on-dark">
+            <Link to="/contact#form" className="btn btn-on-dark">
               Start a Custom Order <ArrowIcon />
             </Link>
           </div>

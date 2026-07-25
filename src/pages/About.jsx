@@ -163,7 +163,7 @@ export default function About() {
         title="Want to work with us?"
         subtitle="We partner with dealers, distributors and importers globally."
         primaryLabel="Get in Touch"
-        primaryTo="/contact"
+        primaryTo="/contact#form"
         secondLabel="View Products"
         secondTo="/products"
       />

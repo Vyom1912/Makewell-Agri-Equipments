@@ -59,8 +59,10 @@ const TOOLS = [
 
 export default function Company() {
   const processRef = useRef(null);
+  const capsRef    = useRef(null);
   const customRef  = useRef(null);
   useReveal(processRef);
+  useReveal(capsRef);
   useReveal(customRef);
   useProcessSteps();
 
@@ -95,13 +97,26 @@ export default function Company() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="ruled-grid ruled-grid-3">
+      {/* ── Capabilities — dark bg ── */}
+      <section className="section section-dark" ref={capsRef}>
+        <div className="container">
+          <div className="sec-head sec-head--row reveal">
+            <div>
+              <div className="eyebrow"><span className="idx">Why Choose Us</span><span className="rule" /></div>
+              <h2>Built for dealers<br />who demand consistency.</h2>
+            </div>
+            <p className="sec-sub">Six reasons exporters and bulk buyers keep coming back — from the forge floor to the final carton.</p>
+          </div>
+
+          <div className="caps-grid">
             {CAPS.map((cap) => (
-              <div className={`cap-card reveal ${cap.delay}`} key={cap.idx}>
-                <span className="cap-idx">{cap.idx}</span>
-                <h4>{cap.title}</h4>
-                <p>{cap.desc}</p>
+              <div className={`caps-item reveal ${cap.delay}`} key={cap.idx}>
+                <span className="caps-item-idx">{cap.idx}</span>
+                <h4 className="caps-item-title">{cap.title}</h4>
+                <p className="caps-item-desc">{cap.desc}</p>
               </div>
             ))}
           </div>
@@ -170,7 +185,7 @@ export default function Company() {
                   </li>
                 ))}
               </ul>
-              <Link to="/contact" className="btn btn-primary">
+              <Link to="/contact#form" className="btn btn-primary">
                 Start a Custom Order <ArrowIcon />
               </Link>
             </div>
@@ -182,7 +197,7 @@ export default function Company() {
         title="Ready to place an order?"
         subtitle="Standard catalogue or full-custom — we'll get it right."
         primaryLabel="Contact Us"
-        primaryTo="/contact"
+        primaryTo="/contact#form"
         secondLabel="Browse Products"
         secondTo="/products"
       />
