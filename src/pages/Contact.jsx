@@ -95,6 +95,8 @@ export default function Contact({ showToast }) {
   });
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [emailChecking, setEmailChecking] = useState(false);
 
   const EMPTY_FORM = {
     name: "",
@@ -106,8 +108,48 @@ export default function Contact({ showToast }) {
     message: "",
   };
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    if (e.target.name === "email") setEmailError("");
+  };
+
+  /* MX-record check via Mailcheck.ai — no API key required */
+  const validateEmail = async (email) => {
+    const trimmed = email.trim();
+    if (!trimmed) return; // handled by submit guard
+
+    // Basic format check first
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    }
+
+    setEmailChecking(true);
+    setEmailError("");
+    try {
+      const domain = trimmed.split("@")[1];
+      const res = await fetch(
+        `https://mailcheck.ai/api/v1/domain?domain=${encodeURIComponent(domain)}`,
+        { headers: { Accept: "application/json" } },
+      );
+      if (!res.ok) return; // API down — allow submission, don't block
+      const data = await res.json();
+
+      // disposable = throwaway inbox service (Mailinator, etc.)
+      // mx = domain has mail servers configured
+      if (data.disposable) {
+        setEmailError("Disposable email addresses are not accepted.");
+      } else if (data.mx === false) {
+        setEmailError(
+          "This email domain doesn't appear to exist. Please check for typos.",
+        );
+      }
+    } catch {
+      // Network issue — silently allow, don't punish the user
+    } finally {
+      setEmailChecking(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -122,7 +164,16 @@ export default function Contact({ showToast }) {
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      showToast("Please enter a valid email.");
+      setEmailError("Please enter a valid email address.");
+      return;
+    }
+    if (emailError) {
+      // inline error already shown under the field
+      document.getElementById("cn-email")?.focus();
+      return;
+    }
+    if (emailChecking) {
+      showToast("Please wait — verifying your email address.");
       return;
     }
     if (!form.message.trim()) {
@@ -133,7 +184,7 @@ export default function Contact({ showToast }) {
     setSending(true);
     try {
       const payload = {
-        access_key: import.meta.env.VITE_WEB3FORMS_KEY, // ← replace with your key from web3forms.com
+        access_key: import.meta.env.VITE_WEB3FORMS_KEY,
         subject: `New Inquiry from ${form.name}${form.company ? ` — ${form.company}` : ""}`,
         from_name: "Makewell Website",
         replyto: form.email,
@@ -285,7 +336,7 @@ export default function Contact({ showToast }) {
                     </div>
                   </div>
                   <div className='form-row'>
-                    <div className='field field--light'>
+                    <div className={`field field--light${emailError ? " field--error" : ""}`}>
                       <label htmlFor='cn-email'>Email Address *</label>
                       <input
                         type='email'
@@ -295,8 +346,19 @@ export default function Contact({ showToast }) {
                         required
                         value={form.email}
                         onChange={handleChange}
+                        onBlur={(e) => validateEmail(e.target.value)}
                         autoComplete='email'
+                        aria-describedby={emailError ? "cn-email-error" : undefined}
+                        aria-invalid={!!emailError}
                       />
+                      {emailChecking && (
+                        <span className='field-hint'>Verifying…</span>
+                      )}
+                      {emailError && (
+                        <span className='field-error' id='cn-email-error' role='alert'>
+                          {emailError}
+                        </span>
+                      )}
                     </div>
                     <div className='field field--light'>
                       <label htmlFor='cn-phone'>Phone / WhatsApp</label>
