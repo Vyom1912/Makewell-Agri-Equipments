@@ -3070,7 +3070,9 @@ footer {
   border-radius: var(--r-sm);
   overflow: hidden;
   background: #fff;
-  transition: border-color 0.25s, box-shadow 0.25s;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
 }
 .phone-input-group:focus-within {
   border-color: var(--brass);
@@ -4028,8 +4030,8 @@ footer {
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .tf-tabs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* display: grid; */
+    /* grid-template-columns: repeat(3, 1fr); */
   }
   .tf-tab {
     border-right: none;
@@ -4047,7 +4049,7 @@ footer {
 }
 @media (max-width: 768px) {
   .tf-tabs {
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 1fr); */
   }
   .tf-tab {
     padding: 14px 8px 12px;
@@ -4105,6 +4107,6 @@ footer {
 }
 @media (max-width: 480px) {
   .tf-tabs {
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr); */
   }
 }
