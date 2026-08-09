@@ -72,8 +72,11 @@ function AppShell() {
 }
 
 export default function App() {
+  // BASE_URL is "/" on Vercel, "/Makewell-Agri-Equipments/" on gh-pages
+  // Strip trailing slash for BrowserRouter basename
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
   return (
-    <BrowserRouter basename="/Makewell-Agri-Equipments">
+    <BrowserRouter basename={base}>
       <ScrollToTop />
       <AppShell />
     </BrowserRouter>
