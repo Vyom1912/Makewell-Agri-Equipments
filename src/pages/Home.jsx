@@ -191,7 +191,7 @@ export default function Home() {
                 <div className='hero-img-card hero-img-card--sm'>
                   <img
                     src={`${import.meta.env.BASE_URL}product/SHOVELS/p60.png`}
-                    alt='Round-Point Shovel — Makewell Agri Equipments'
+                    alt='square-Point Shovel — Makewell Agri Equipments'
                     loading='eager'
                   />
                   <span className='hero-img-label'>Round-Point Shovel</span>
@@ -255,7 +255,7 @@ export default function Home() {
               <div className='home-product-photo'>
                 <img
                   src={`${import.meta.env.BASE_URL}product/SHOVELS/p63.png`}
-                  alt='Makewell Hoe — forged in Himatnagar, Gujarat'
+                  alt='Makewell SHOVELS — forged in Himatnagar, Gujarat'
                   loading='lazy'
                 />
                 <span className='tag'>MW — FORGED SHOVELS</span>
