@@ -513,39 +513,76 @@ const SHOWCASE = [
   },
 ];
 
-/* ── Product range rows data ── */
+/* ── Product range rows data — all 8 families ── */
+const P = `${import.meta.env.BASE_URL}product/`;
+
 const PRODUCTS = [
   {
-    num: '01', SvgComp: SvgShovel, img: IMG['Round-Point Shovel'],
+    num: '01', SvgComp: SvgShovel,
+    img: `${P}SHOVELS/p60.png`,
     name: 'Shovels & Spades',
-    desc: 'Round-point, square-point and trenching shovels for digging, lifting and earthmoving on farms and construction sites.',
-    specs: ['High-carbon steel blade, heat-treated', 'Handle: wooden, fibreglass or steel', 'Weight range: 0.8 kg – 2.5 kg (head only)'],
+    desc: 'Round-point, square-point and trenching shovels for digging, lifting and earthmoving on farms and construction sites worldwide.',
+    specs: ['High-carbon steel blade, heat-treated', 'Handle: wooden, fibreglass or steel', 'Weight range: 0.8 kg – 2.5 kg (head only)', 'Export-grade packing available'],
   },
   {
-    num: '02', SvgComp: SvgAxe, img: IMG['Single-Bit Felling Axe'],
+    num: '02', SvgComp: SvgAxe,
+    img: `${P}AXES/p17.png`,
     name: 'Axes & Hatchets',
     desc: 'Felling axes, splitting axes and hatchets — drop-forged heads with ergonomic handles to reduce fatigue during extended use.',
-    specs: ['Drop-forged high-carbon steel head', 'Single bit & double bit options', 'Custom logo branding, polished finish'],
+    specs: ['Drop-forged high-carbon steel head', 'Single bit & double bit options', 'Hickory or fibreglass handle', 'Custom logo branding, polished finish'],
   },
   {
-    num: '03', SvgComp: SvgMattock, img: IMG['Cutter Mattock'],
+    num: '03', SvgComp: SvgMattock,
+    img: `${P}PICKS & MATTOCKS/p30.png`,
     name: 'Pickaxes & Mattocks',
-    desc: 'Heavy pick mattocks, cutter mattocks and adzes for breaking hard soil, rocky ground and root clearance.',
-    specs: ['Weight range: 2 kg – 5 kg', 'Powder-coated or plain finish', 'OEM & private label available'],
+    desc: 'Heavy pick mattocks, cutter mattocks and adzes for breaking hard soil, rocky ground and root clearance on large agricultural sites.',
+    specs: ['Weight range: 2 kg – 5 kg', 'Cutter, pick and adze profiles', 'Powder-coated or plain finish', 'OEM & private label available'],
   },
   {
-    num: '04', SvgComp: SvgHoe, img: IMG['Draw Hoe – Wide Blade'],
+    num: '04', SvgComp: SvgHoe,
+    img: `${P}HOES/p41.png`,
     name: 'Hoes & Rakes',
     desc: 'Draw hoes, stirrup hoes and garden rakes for weeding, cultivating and soil preparation in tropical and arid regions.',
-    specs: ['Lightweight build for long-day use', 'Various blade widths available', 'Rust-resistant coated finish'],
+    specs: ['Lightweight build for long-day use', 'Various blade widths: 100 – 220 mm', 'Rust-resistant coated finish', 'Telescopic handle option'],
   },
   {
-    num: '05', SvgComp: SvgCrowbar, img: IMG['Hexagonal Crowbar'],
+    num: '05', SvgComp: SvgCrowbar,
+    img: `${P}BARS/p27.png`,
     name: 'Crowbars & Iron Bars',
-    desc: 'Solid wrought iron crowbars, flat bars and tampers for prying, earthmoving and compaction on farms and worksites.',
-    specs: ['Multiple diameters & cross-sections', 'Custom cut lengths per order', 'Export-grade individual packing'],
+    desc: 'Solid wrought iron crowbars, flat bars and tamping rods for prying, earthmoving and compaction on farms and construction sites.',
+    specs: ['Hexagonal & flat section profiles', 'Multiple diameters: Ø25 – Ø32 mm', 'Custom cut lengths per order', 'Export-grade individual packing'],
+  },
+  {
+    num: '06', SvgComp: SvgHoe,
+    img: `${P}BINETTES/p1.png`,
+    name: 'Binettes',
+    desc: 'Forged binettes for precision weeding and soil aeration — lightweight, sharply profiled, and popular in European, African and Middle Eastern markets.',
+    specs: ['Forged steel head', 'Multiple blade profiles', 'Lightweight for precise work', 'Custom handle lengths'],
+  },
+  {
+    num: '07', SvgComp: SvgAxe,
+    img: `${P}FORGED HAMMERS/p11.png`,
+    name: 'Forged Hammers',
+    desc: 'Drop-forged steel hammers for construction, demolition and agricultural use. Available in multiple head weights with fibreglass or wooden handles.',
+    specs: ['Drop-forged hardened face', 'Head weights: 0.5 kg – 3 kg', 'Fibreglass or hickory handle', 'Various profiles: ball peen, sledge, claw'],
   },
 ];
+
+const PAGE_SIZE = 12;
+
+/* Deterministic shuffle so order is consistent but mixed across categories */
+function seededShuffle(arr) {
+  const a = [...arr];
+  let seed = 42;
+  const rand = () => { seed = (seed * 1664525 + 1013904223) & 0xffffffff; return (seed >>> 0) / 0xffffffff; };
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const SHOWCASE_SHUFFLED = seededShuffle(SHOWCASE);
 
 export default function Products() {
   const listRef      = useRef(null);
@@ -554,6 +591,7 @@ export default function Products() {
   const [activeFamily,  setActiveFamily]  = useState('axes');
   const [activeVariant, setActiveVariant] = useState(0);
   const [activeFilter,  setActiveFilter]  = useState('all');
+  const [page,          setPage]          = useState(1);
   useReveal(listRef);
   useReveal(familyRef);
   useReveal(showcaseRef);
@@ -562,15 +600,22 @@ export default function Products() {
   const activeVar     = activeFam?.variants[activeVariant] ?? activeFam?.variants[0];
   const IllustSvg     = activeVar?.SvgComp ?? activeFam?.SvgComp;
 
-  // Reset variant index when switching families
   const handleFamilyChange = (id) => {
     setActiveFamily(id);
     setActiveVariant(0);
   };
 
-  const filtered  = activeFilter === 'all'
-    ? SHOWCASE
-    : SHOWCASE.filter((p) => p.filter === activeFilter);
+  const handleFilterChange = (key) => {
+    setActiveFilter(key);
+    setPage(1); // reset to page 1 on filter change
+  };
+
+  const filtered = activeFilter === 'all'
+    ? SHOWCASE_SHUFFLED
+    : SHOWCASE_SHUFFLED.filter((p) => p.filter === activeFilter);
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const paginated  = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
     <>
@@ -774,15 +819,18 @@ export default function Products() {
               <button
                 key={f.key}
                 className={`sc-filter-btn${activeFilter === f.key ? ' active' : ''}`}
-                onClick={() => setActiveFilter(f.key)}
+                onClick={() => handleFilterChange(f.key)}
               >
                 {f.label}
+                <span className="sc-filter-count">
+                  {f.key === 'all' ? SHOWCASE.length : SHOWCASE.filter(p => p.filter === f.key).length}
+                </span>
               </button>
             ))}
           </div>
 
           <div className="sc-grid">
-            {filtered.map((p, i) => (
+            {paginated.map((p, i) => (
               <div
                 className={`sc-card reveal delay-${(i % 4) + 1}`}
                 key={p.id}
@@ -810,30 +858,56 @@ export default function Products() {
 
                 <div className="sc-body">
                   <h4 className="sc-name">{p.name}</h4>
-                  {/* <p className="sc-desc">{p.desc}</p> */}
-                  {/* <div className="sc-specs">
-                    {p.specs.map((s) => <span className="tag-chip" key={s}>{s}</span>)}
-                  </div> */}
-                  {/* <div className="sc-variants">
-                    {p.available.map((v) => (
-                      <span
-                        key={v}
-                        className={`sc-variant${v === 'Custom' || v === 'OEM pack' || v === 'Custom spec' ? ' sc-variant--highlight' : ''}`}
-                      >
-                        {v}
-                      </span>
-                    ))}
-                  </div> */}
                   <div className="sc-actions">
-                    <Link to="/contact#form" className="btn btn-primary btn-sm">
-                      Request Sample <ArrowIcon />
+                    <Link to="/contact#form" className="btn btn-primary btn-sm btn-full">
+                      Get a Quote <ArrowIcon />
                     </Link>
-                    <Link to="/contact#form" className="sc-quote-link">Get Quote →</Link>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="sc-pagination">
+              <button
+                className="sc-page-btn"
+                onClick={() => { setPage(p => Math.max(1, p - 1)); showcaseRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
+                disabled={page === 1}
+                aria-label="Previous page"
+              >
+                ← Prev
+              </button>
+
+              <div className="sc-page-numbers">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+                  <button
+                    key={n}
+                    className={`sc-page-num${page === n ? ' active' : ''}`}
+                    onClick={() => { setPage(n); showcaseRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
+                    aria-label={`Page ${n}`}
+                    aria-current={page === n ? 'page' : undefined}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                className="sc-page-btn"
+                onClick={() => { setPage(p => Math.min(totalPages, p + 1)); showcaseRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }}
+                disabled={page === totalPages}
+                aria-label="Next page"
+              >
+                Next →
+              </button>
+
+              <span className="sc-page-info">
+                {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, filtered.length)} of {filtered.length}
+              </span>
+            </div>
+          )}
         </div>
       </section>
 

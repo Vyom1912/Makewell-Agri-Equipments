@@ -3572,12 +3572,15 @@ footer {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 8px 18px;
+  padding: 8px 14px;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: rgba(255, 255, 255, 0.55);
   background: transparent;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   transition:
     border-color 0.22s,
     color 0.22s,
@@ -3594,12 +3597,85 @@ footer {
   border-color: var(--brass);
   color: #fff;
 }
+.sc-filter-count {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  padding: 1px 6px;
+  letter-spacing: 0;
+}
+.sc-filter-btn.active .sc-filter-count {
+  background: rgba(255, 255, 255, 0.25);
+}
 
 /* ── Cards grid ─────────────────────────────────────────────── */
 .sc-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 16px;
+}
+
+/* ── Pagination ─────────────────────────────────────────────── */
+.sc-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 44px;
+  flex-wrap: wrap;
+}
+.sc-page-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  color: var(--ink-600);
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.sc-page-btn:hover:not(:disabled) {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.sc-page-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.sc-page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.sc-page-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-600);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.sc-page-num:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.sc-page-num.active {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: #fff;
+}
+.sc-page-info {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-400);
+  letter-spacing: 0.06em;
+  margin-left: 8px;
 }
 
 /* ── Single card ─────────────────────────────────────────────── */
@@ -3633,6 +3709,10 @@ footer {
   justify-content: center;
   background: #fff;
   border-bottom: 1px solid var(--line);
+}
+/* Actions — single full-width button */
+.sc-actions {
+  margin-top: auto;
 }
 
 /* Gradient bg using the per-card accent colour (SVG fallback only) */
@@ -3860,24 +3940,54 @@ footer {
 @media (max-width: 1200px) {
   .sc-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
   }
 }
 @media (max-width: 900px) {
   .sc-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 }
 @media (max-width: 560px) {
+  /* Keep 2 columns on mobile — never collapse to 1 */
   .sc-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   .sc-filters {
-    gap: 6px;
+    gap: 5px;
   }
   .sc-filter-btn {
-    padding: 7px 14px;
+    padding: 6px 10px;
     font-size: 10px;
+  }
+  .sc-filter-count {
+    display: none; /* hide count on very small screens */
+  }
+  .sc-thumb {
+    height: 150px;
+  }
+  .sc-body {
+    padding: 10px 10px 12px;
+  }
+  .sc-name {
+    font-size: 12px;
+  }
+  .sc-pagination {
+    gap: 6px;
+  }
+  .sc-page-btn {
+    padding: 7px 12px;
+    font-size: 10px;
+  }
+  .sc-page-num {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+  .sc-page-info {
+    display: none;
   }
 }
 
@@ -4290,6 +4400,39 @@ footer {
 }
 .section-alt .sc-tool-svg {
   filter: drop-shadow(0 3px 8px rgba(25, 24, 21, 0.18));
+}
+
+/* section-alt pagination overrides */
+.section-alt .sc-page-btn {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--ink-600);
+}
+.section-alt .sc-page-btn:hover:not(:disabled) {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.section-alt .sc-page-num {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--ink-600);
+}
+.section-alt .sc-page-num:hover {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+.section-alt .sc-page-num.active {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: #fff;
+}
+.section-alt .sc-filter-count {
+  background: rgba(25, 24, 21, 0.08);
+  color: var(--ink-400);
+}
+.section-alt .sc-filter-btn.active .sc-filter-count {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */
