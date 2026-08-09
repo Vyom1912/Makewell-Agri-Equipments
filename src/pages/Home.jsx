@@ -5,6 +5,46 @@ import ArrowIcon from "../components/ArrowIcon";
 import SectionHead from "../components/SectionHead";
 import CtaStrip from "../components/CtaStrip";
 import { useReveal } from "../hooks/useReveal";
+import SEO from "../components/SEO";
+
+const HOME_JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.makewellagriequipments.com/#organization",
+      "name": "Makewell Agri Equipments",
+      "url": "https://www.makewellagriequipments.com/",
+      "logo": "https://www.makewellagriequipments.com/mwIcone.png",
+      "description": "Manufacturer and exporter of forged agricultural hand tools — shovels, axes, mattocks, hoes and crowbars — from Himatnagar, Gujarat, India.",
+      "foundingDate": "1996",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Vaktapur",
+        "addressLocality": "Himatnagar",
+        "addressRegion": "Gujarat",
+        "postalCode": "383001",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-98252-70190",
+        "contactType": "sales",
+        "availableLanguage": ["English", "Hindi", "Gujarati"]
+      },
+      "sameAs": [
+        "https://github.com/Vyom1912/Makewell-Agri-Equipments"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.makewellagriequipments.com/#website",
+      "url": "https://www.makewellagriequipments.com/",
+      "name": "Makewell Agri Equipments",
+      "publisher": { "@id": "https://www.makewellagriequipments.com/#organization" }
+    }
+  ]
+};
 
 function animateCounter(el, target, suffix) {
   let current = 0;
@@ -70,6 +110,11 @@ export default function Home() {
 
   return (
     <div ref={pageRef}>
+      <SEO
+        canonical="/"
+        description="Makewell Agri Equipments — manufacturer and exporter of forged agricultural hand tools: shovels, axes, mattocks, hoes, spades and crowbars. Based in Himatnagar, Gujarat, India. Trusted by dealers in 50+ countries."
+        jsonLd={HOME_JSON_LD}
+      />
       {/* ── Hero ── */}
       <section className='hero' id='home'>
         <div className='hero-pattern' aria-hidden='true' />

@@ -3,6 +3,21 @@ import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import PageHero  from '../components/PageHero';
 import ArrowIcon from '../components/ArrowIcon';
+import SEO from '../components/SEO';
+
+const PRODUCTS_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Makewell Agri Equipments — Product Range",
+  "url": "https://www.makewellagriequipments.com/products",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Shovels & Spades", "url": "https://www.makewellagriequipments.com/products" },
+    { "@type": "ListItem", "position": 2, "name": "Axes & Hatchets",  "url": "https://www.makewellagriequipments.com/products" },
+    { "@type": "ListItem", "position": 3, "name": "Pickaxes & Mattocks", "url": "https://www.makewellagriequipments.com/products" },
+    { "@type": "ListItem", "position": 4, "name": "Hoes & Rakes",     "url": "https://www.makewellagriequipments.com/products" },
+    { "@type": "ListItem", "position": 5, "name": "Crowbars & Iron Bars", "url": "https://www.makewellagriequipments.com/products" }
+  ]
+};
 
 /* ══════════════════════════════════════════════════
    SVG silhouettes — one per variant
@@ -544,6 +559,12 @@ export default function Products() {
 
   return (
     <>
+      <SEO
+        title="Agricultural Hand Tools — Shovels, Axes, Mattocks, Hoes & Crowbars"
+        description="Browse Makewell's full range of forged agricultural hand tools: round-point shovels, felling axes, cutter mattocks, draw hoes and hexagonal crowbars. OEM and custom manufacturing available. Export to 50+ countries."
+        canonical="/products"
+        jsonLd={PRODUCTS_JSON_LD}
+      />
       <PageHero
         title="Our Products"
         subtitle="Five tool families engineered for durability — every one adaptable to your exact specification."
