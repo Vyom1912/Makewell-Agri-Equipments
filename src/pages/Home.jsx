@@ -194,7 +194,7 @@ export default function Home() {
                     alt='square-Point Shovel — Makewell Agri Equipments'
                     loading='eager'
                   />
-                  <span className='hero-img-label'>Round-Point Shovel</span>
+                  <span className='hero-img-label'>Square-Point Shovel</span>
                 </div>
                 <div className='hero-img-card hero-img-card--sm'>
                   <img
