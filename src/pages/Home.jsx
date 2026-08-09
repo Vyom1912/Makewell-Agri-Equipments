@@ -129,7 +129,7 @@ export default function Home() {
               <div className='hero-img-grid'>
                 <div className='hero-img-card hero-img-card--main'>
                   <img
-                    src='/Makewell-Agri-Equipments/img/MW Single-Bit Felling Axe.png'
+                    src={`${import.meta.env.BASE_URL}img/MW Single-Bit Felling Axe.png`}
                     alt='Single-Bit Felling Axe'
                     loading='eager'
                   />
@@ -137,7 +137,7 @@ export default function Home() {
                 </div>
                 <div className='hero-img-card hero-img-card--sm'>
                   <img
-                    src='/Makewell-Agri-Equipments/img/MW Round-Point Shovel.png'
+                    src={`${import.meta.env.BASE_URL}img/MW Round-Point Shovel.png`}
                     alt='Round-Point Shovel'
                     loading='eager'
                   />
@@ -145,7 +145,7 @@ export default function Home() {
                 </div>
                 <div className='hero-img-card hero-img-card--sm'>
                   <img
-                    src='/Makewell-Agri-Equipments/img/MW Cutter Mattock.png'
+                    src={`${import.meta.env.BASE_URL}img/MW Cutter Mattock.png`}
                     alt='Cutter Mattock'
                     loading='eager'
                   />
@@ -201,7 +201,7 @@ export default function Home() {
             <div className='reveal'>
               <div className='home-product-photo'>
                 <img
-                  src='/Makewell-Agri-Equipments/img/MW Grub Hoe.png'
+                  src={`${import.meta.env.BASE_URL}img/MW Grub Hoe.png`}
                   alt='Makewell Grub Hoe — forged in Himatnagar, Gujarat'
                   loading='lazy'
                 />

@@ -83,7 +83,7 @@ export default function About() {
             <div className='about-visual reveal'>
               <div className='home-product-photo'>
                 <img
-                  src='/Makewell-Agri-Equipments/img/MW Grub Hoe.png'
+                  src={`${import.meta.env.BASE_URL}img/MW Grub Hoe.png`}
                   alt='Makewell Grub Hoe — drop-forged in Himatnagar, Gujarat'
                   loading='lazy'
                 />

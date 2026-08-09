@@ -271,7 +271,7 @@ const SvgHoe    = SvgHoeDrawWide;
 const SvgCrowbar = SvgCrowbarHex;
 
 /* ── Image map: variant name → public path ── */
-const BASE = '/Makewell-Agri-Equipments/img/';
+const BASE = `${import.meta.env.BASE_URL}img/`;
 const IMG = {
   // Axes
   'Single-Bit Felling Axe':  `${BASE}MW Single-Bit Felling Axe.png`,

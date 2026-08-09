@@ -1,11 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vite.dev/config/
+// BASE_URL: "/" for Vercel, "/Makewell-Agri-Equipments/" for gh-pages
+// Set VITE_BASE in the deployment environment, or leave unset for "/"
 export default defineConfig({
   plugins: [react()],
-  // Required for SPA routing — serve index.html for any unmatched route
   preview: { port: 4173 },
   server: { historyApiFallback: true },
-  base: "/Makewell-Agri-Equipments/",
+  base: process.env.VITE_BASE ?? "/",
 });
