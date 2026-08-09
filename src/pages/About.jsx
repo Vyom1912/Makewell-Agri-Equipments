@@ -107,11 +107,11 @@ export default function About() {
             <div className='about-visual reveal'>
               <div className='home-product-photo'>
                 <img
-                  src={`${import.meta.env.BASE_URL}img/MW Grub Hoe.png`}
-                  alt='Makewell Grub Hoe — drop-forged in Himatnagar, Gujarat'
+                  src={`${import.meta.env.BASE_URL}product/SHOVELS/p63.png`}
+                  alt='Makewell SHOVELS — drop-forged in Himatnagar, Gujarat'
                   loading='lazy'
                 />
-                <span className='tag'>MW — GRUB HOE / DROP-FORGED HEAD</span>
+                <span className='tag'>MW — SHOVELS</span>
               </div>
             </div>
 

@@ -17,9 +17,10 @@ dist-ssr
 .env.*
 !.env.example
 
-# Duplicate / raw asset folders (use public/img/ only)
+# Duplicate / raw asset folders (use public/product/ only)
 /img/
 /src/images/
+/public/img/
 
 # Editor directories and files
 .vscode/

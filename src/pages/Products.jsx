@@ -519,7 +519,7 @@ const P = `${import.meta.env.BASE_URL}product/`;
 const PRODUCTS = [
   {
     num: '01', SvgComp: SvgShovel,
-    img: `${P}SHOVELS/p60.png`,
+    img: `${P}SHOVELS/p64.png`,
     name: 'Shovels & Spades',
     desc: 'Round-point, square-point and trenching shovels for digging, lifting and earthmoving on farms and construction sites worldwide.',
     specs: ['High-carbon steel blade, heat-treated', 'Handle: wooden, fibreglass or steel', 'Weight range: 0.8 kg – 2.5 kg (head only)', 'Export-grade packing available'],
@@ -540,7 +540,7 @@ const PRODUCTS = [
   },
   {
     num: '04', SvgComp: SvgHoe,
-    img: `${P}HOES/p41.png`,
+    img: `${P}HOES/p44.png`,
     name: 'Hoes & Rakes',
     desc: 'Draw hoes, stirrup hoes and garden rakes for weeding, cultivating and soil preparation in tropical and arid regions.',
     specs: ['Lightweight build for long-day use', 'Various blade widths: 100 – 220 mm', 'Rust-resistant coated finish', 'Telescopic handle option'],
@@ -669,7 +669,7 @@ export default function Products() {
       </section>
 
       {/* ── 2. Tool family browser — tabs + detail panel ── */}
-      <section className="section section-dark" ref={familyRef}>
+      {/* <section className="section section-dark" ref={familyRef}>
         <div className="container">
           <div className="sec-head sec-head--row reveal">
             <div>
@@ -679,7 +679,6 @@ export default function Products() {
             <p className="sec-sub">Select a tool family below to explore the full range of variants, weights and handle options available.</p>
           </div>
 
-          {/* Tab bar */}
           <div className="tf-tabs reveal">
             {TOOL_FAMILIES.map((fam) => (
               <button
@@ -696,11 +695,10 @@ export default function Products() {
             ))}
           </div>
 
-          {/* Detail panel */}
           {activeFam && (
             <div className="tf-panel reveal" key={activeFam.id} style={{ '--tf-color': activeFam.color }}>
               <div className="tf-panel-left">
-                {/* Real product photo — falls back to SVG if image missing */}
+                
                 <div className="tf-illustration" style={{ color: activeFam.color }}>
                   {IMG[activeVar?.name] ? (
                     <div className="tf-illus-photo" key={activeVariant}>
@@ -738,7 +736,7 @@ export default function Products() {
                         tabIndex={0}
                         onKeyDown={(e) => e.key === 'Enter' && setActiveVariant(i)}
                       >
-                        {/* Mobile inline preview — real photo or SVG fallback */}
+                        
                         {activeVariant === i && (
                           <div className="tf-variant-mobile-preview" aria-hidden="true">
                             {IMG[v.name] ? (
@@ -790,7 +788,7 @@ export default function Products() {
             </div>
           )}
         </div>
-      </section>
+      </section> */}
 
       {/* ── 3. Tool Showcase — filterable cards ── */}
       <section className="section section-alt" ref={showcaseRef}>

@@ -182,24 +182,24 @@ export default function Home() {
               <div className='hero-img-grid'>
                 <div className='hero-img-card hero-img-card--main'>
                   <img
-                    src={`${import.meta.env.BASE_URL}img/MW Single-Bit Felling Axe.png`}
-                    alt='Single-Bit Felling Axe'
+                    src={`${import.meta.env.BASE_URL}product/AXES/p17.png`}
+                    alt='Forged Axe — Makewell Agri Equipments'
                     loading='eager'
                   />
                   <span className='hero-img-label'>Felling Axe</span>
                 </div>
                 <div className='hero-img-card hero-img-card--sm'>
                   <img
-                    src={`${import.meta.env.BASE_URL}img/MW Round-Point Shovel.png`}
-                    alt='Round-Point Shovel'
+                    src={`${import.meta.env.BASE_URL}product/SHOVELS/p60.png`}
+                    alt='Round-Point Shovel — Makewell Agri Equipments'
                     loading='eager'
                   />
                   <span className='hero-img-label'>Round-Point Shovel</span>
                 </div>
                 <div className='hero-img-card hero-img-card--sm'>
                   <img
-                    src={`${import.meta.env.BASE_URL}img/MW Cutter Mattock.png`}
-                    alt='Cutter Mattock'
+                    src={`${import.meta.env.BASE_URL}product/PICKS & MATTOCKS/p30.png`}
+                    alt='Cutter Mattock — Makewell Agri Equipments'
                     loading='eager'
                   />
                   <span className='hero-img-label'>Cutter Mattock</span>
@@ -254,11 +254,11 @@ export default function Home() {
             <div className='reveal'>
               <div className='home-product-photo'>
                 <img
-                  src={`${import.meta.env.BASE_URL}img/MW Grub Hoe.png`}
-                  alt='Makewell Grub Hoe — forged in Himatnagar, Gujarat'
+                  src={`${import.meta.env.BASE_URL}product/HOES/p41.png`}
+                  alt='Makewell Hoe — forged in Himatnagar, Gujarat'
                   loading='lazy'
                 />
-                <span className='tag'>MW — GRUB HOE / DROP-FORGED HEAD</span>
+                <span className='tag'>MW — FORGED HOE / HEAT-TREATED HEAD</span>
               </div>
             </div>
             <div className='reveal delay-2'>
