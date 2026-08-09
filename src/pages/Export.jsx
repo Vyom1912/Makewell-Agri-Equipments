@@ -3,6 +3,7 @@ import { useReveal } from "../hooks/useReveal";
 import PageHero from "../components/PageHero";
 import ArrowIcon from "../components/ArrowIcon";
 import CtaStrip from "../components/CtaStrip";
+import SEO from "../components/SEO";
 
 const REGIONS = [
   {
@@ -132,6 +133,18 @@ export default function Export() {
 
   return (
     <>
+      <SEO
+        title="Global Export — Agricultural Tools from India to 50+ Countries"
+        description="Makewell Agri Equipments exports forged agricultural hand tools to 50+ countries across Africa, Middle East, Europe and the Americas. DGFT certified. Full documentation, FCL/LCL container packing, flexible payment terms."
+        canonical="/export"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "url": "https://www.makewellagriequipments.com/export",
+          "name": "Global Export — Makewell Agri Equipments",
+          "description": "Exporting forged agricultural hand tools from Gujarat, India to distributors in 50+ countries worldwide."
+        }}
+      />
       <PageHero
         title='Global Export'
         subtitle='Exporting from Gujarat to the world — with full documentation support and proven logistics.'

@@ -4,6 +4,7 @@ import { useReveal } from "../hooks/useReveal";
 import PageHero from "../components/PageHero";
 import ArrowIcon from "../components/ArrowIcon";
 import CtaStrip from "../components/CtaStrip";
+import SEO from "../components/SEO";
 
 /* ── Real contact details ─────────────────────────────────── */
 export const PHONE_RAW = "+919825270190";
@@ -332,6 +333,31 @@ export default function Contact({ showToast }) {
 
   return (
     <>
+      <SEO
+        title="Contact Us — Get a Quote for Agricultural Tools"
+        description="Contact Makewell Agri Equipments for bulk orders, export inquiries and custom manufacturing. Call, WhatsApp or email us. Based in Himatnagar, Gujarat, India. Response within 24 hours."
+        canonical="/contact"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "url": "https://www.makewellagriequipments.com/contact",
+          "name": "Contact Makewell Agri Equipments",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Makewell Agri Equipments",
+            "telephone": "+91-98252-70190",
+            "email": "makewellagri@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Vaktapur",
+              "addressLocality": "Himatnagar",
+              "addressRegion": "Gujarat",
+              "postalCode": "383001",
+              "addressCountry": "IN"
+            }
+          }
+        }}
+      />
       <PageHero
         title='Contact Us'
         subtitle="Whether you're a distributor looking for a long-term supply partner or a first-time buyer — we're ready to help."

@@ -3,6 +3,7 @@ import { useReveal } from "../hooks/useReveal";
 import PageHero from "../components/PageHero";
 import SectionHead from "../components/SectionHead";
 import CtaStrip from "../components/CtaStrip";
+import SEO from "../components/SEO";
 
 const MILESTONES = [
   {
@@ -70,6 +71,29 @@ export default function About() {
 
   return (
     <>
+      <SEO
+        title="About Makewell — Forged Agricultural Tools Manufacturer, Gujarat India"
+        description="Learn about Makewell Agri Equipments — a 30-year forging tradition from Himatnagar, Sabarkantha, Gujarat. Drop-forged agricultural hand tools exported to 50+ countries worldwide."
+        canonical="/about"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "url": "https://www.makewellagriequipments.com/about",
+          "name": "About Makewell Agri Equipments",
+          "description": "30-year manufacturer and exporter of forged agricultural hand tools from Himatnagar, Gujarat, India.",
+          "mainEntity": {
+            "@type": "Organization",
+            "name": "Makewell Agri Equipments",
+            "foundingDate": "1996",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Himatnagar",
+              "addressRegion": "Gujarat",
+              "addressCountry": "IN"
+            }
+          }
+        }}
+      />
       <PageHero
         title='About Makewell'
         subtitle='A forging tradition from Sabarkantha, Gujarat — built on precision, partnership and purpose.'

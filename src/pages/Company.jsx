@@ -5,6 +5,7 @@ import { useProcessSteps } from '../hooks/useProcessSteps';
 import PageHero    from '../components/PageHero';
 import ArrowIcon   from '../components/ArrowIcon';
 import CtaStrip    from '../components/CtaStrip';
+import SEO from '../components/SEO';
 
 const PROCESS = [
   { num: '01', title: 'Steel Selection',     desc: 'High-carbon billet sourced and graded before production begins.' },
@@ -68,6 +69,18 @@ export default function Company() {
 
   return (
     <>
+      <SEO
+        title="Our Company — Manufacturing Process & Custom OEM Agricultural Tools"
+        description="Explore Makewell's 6-stage drop-forging process, quality control capabilities and custom OEM manufacturing service. We produce agricultural hand tools to your exact spec — blade shape, steel grade, handle, branding and packaging."
+        canonical="/company"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "url": "https://www.makewellagriequipments.com/company",
+          "name": "Our Company — Makewell Agri Equipments",
+          "description": "Drop-forging process, quality control and custom OEM manufacturing of agricultural hand tools from Himatnagar, Gujarat."
+        }}
+      />
       <PageHero
         title="Our Company"
         subtitle="How we forge, finish and deliver — and why dealers trust us season after season."
