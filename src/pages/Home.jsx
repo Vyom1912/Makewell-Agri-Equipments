@@ -146,6 +146,14 @@ export default function Home() {
                   <Link to='/contact#form' className='btn btn-on-dark'>
                     Become a Dealer
                   </Link>
+                  <a
+                    href={`${import.meta.env.BASE_URL}Make Well Product Catalouge.pdf`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className='btn btn-ghost-light'
+                  >
+                    📄 View Catalogue
+                  </a>
                 </div>
               </div>
 

@@ -960,6 +960,9 @@ section {
   max-width: 560px;
   line-height: 1.7;
 }
+.page-hero-cta {
+  margin-top: 24px;
+}
 
 /* Breadcrumb */
 .breadcrumb {
@@ -3765,18 +3768,18 @@ footer {
 
 /* ── Card body ───────────────────────────────────────────────── */
 .sc-body {
-  padding: 20px 18px 18px;
+  padding: 14px 16px 16px;
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 10px;
+  gap: 12px;
 }
 
 .sc-name {
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 600;
   color: #fff;
-  line-height: 1.25;
+  line-height: 1.3;
   margin: 0;
 }
 

@@ -287,6 +287,9 @@ const SvgCrowbar = SvgCrowbarHex;
 
 /* ── Image map: variant name → public path ── */
 const BASE = `${import.meta.env.BASE_URL}img/`;
+
+/* ── Catalog PDF ── */
+const CATALOG_PDF = `${import.meta.env.BASE_URL}Make Well Product Catalouge.pdf`;
 const IMG = {
   // Axes
   'Single-Bit Felling Axe':  `${BASE}MW Single-Bit Felling Axe.png`,
@@ -406,93 +409,105 @@ const TOOL_FAMILIES = [
 
 /* ── Showcase catalogue — filterable grid ── */
 const FILTERS = [
-  { key: 'all',      label: 'All Tools' },
-  { key: 'axes',     label: 'Axes' },
+  { key: 'all',      label: 'All Products' },
   { key: 'shovels',  label: 'Shovels' },
-  { key: 'mattocks', label: 'Mattocks' },
+  { key: 'axes',     label: 'Axes' },
+  { key: 'mattocks', label: 'Picks & Mattocks' },
   { key: 'hoes',     label: 'Hoes' },
-  { key: 'crowbars', label: 'Crowbars' },
+  { key: 'bars',     label: 'Bars & Crowbars' },
+  { key: 'binettes', label: 'Binettes' },
+  { key: 'hammers',  label: 'Forged Hammers' },
   { key: 'custom',   label: 'Custom / OEM' },
 ];
 
+const B = `${import.meta.env.BASE_URL}product/`;
+
+/* Build cards from every image in public/product/ */
 const SHOWCASE = [
-  {
-    id: 'sc01', filter: 'shovels', accent: '#5C8A4A',
-    img: IMG['Round-Point Shovel'],
-    SvgComp: SvgShovel,
-    name: 'Round-Point Shovel',
+  /* ── SHOVELS ── */
+  ...['p60','p61','p62','p63','p64','p65','p66','p67','p68','p69','p70','p71','p72','p73','p74'].map((id, i) => ({
+    id, filter: 'shovels', accent: '#5C8A4A', SvgComp: SvgShovel,
+    img: `${B}SHOVELS/${id}.png`,
+    name: `Shovel / Spade ${i + 1}`,
     badge: 'Shovels',
-    desc: 'The workhorse of the range. Heat-treated carbon blade, D-grip or long handle — in active export to 30+ countries.',
-    specs: ['Carbon steel, heat-treated', 'Head: 0.9 – 1.4 kg', 'Wood / fibreglass handle'],
-    available: ['Standard', 'Long Handle', 'D-Grip', 'Custom'],
-  },
-  {
-    id: 'sc02', filter: 'shovels', accent: '#3D7A5E',
-    img: IMG['Trenching Shovel'],
-    SvgComp: SvgShovel,
-    name: 'Trenching Shovel',
-    badge: 'Shovels',
-    desc: 'Narrow pointed blade for clean trench edges and irrigation channel digging. Popular on construction and farm sites.',
-    specs: ['Narrow blade: 12 cm wide', '28 cm usable depth', 'Long steel handle'],
-    available: ['Standard', 'Heavy-Duty', 'Custom'],
-  },
-  {
-    id: 'sc03', filter: 'axes', accent: '#7A4A2E',
-    img: IMG['Single-Bit Felling Axe'],
-    SvgComp: SvgAxe,
-    name: 'Single-Bit Felling Axe',
+    desc: 'Heat-treated high-carbon steel blade. Available in round-point, square-point, trenching and spade profiles.',
+    specs: ['High-carbon steel', 'Heat-treated blade', 'Wood / fibreglass handle'],
+    available: ['Standard', 'D-Grip', 'Long Handle', 'Custom'],
+  })),
+
+  /* ── AXES ── */
+  ...['p17','p18','p19','p20','p21','p22','p23','p24','p25','p26'].map((id, i) => ({
+    id, filter: 'axes', accent: '#C2743A', SvgComp: SvgAxe,
+    img: `${B}AXES/${id}.png`,
+    name: `Axe / Hatchet ${i + 1}`,
     badge: 'Axes',
-    desc: 'Drop-forged high-carbon steel head, precision-ground edge. Hickory handle for balance and vibration absorption.',
-    specs: ['1.8 kg head', 'Hickory handle', 'Polished or painted'],
+    desc: 'Drop-forged high-carbon steel heads — felling axes, splitting axes, hatchets and hunter\'s axes.',
+    specs: ['Drop-forged head', 'Precision-ground edge', 'Hickory or fibreglass handle'],
     available: ['Single-bit', 'Double-bit', 'Hatchet', 'Custom'],
-  },
-  {
-    id: 'sc04', filter: 'axes', accent: '#8A6A2E',
-    img: IMG['Splitting Axe'],
-    SvgComp: SvgAxe,
-    name: 'Splitting Axe',
-    badge: 'Axes',
-    desc: 'Wedge-profile head designed to split wood grain cleanly. Heavy poll, balanced for overhead swing power.',
-    specs: ['2.5 – 3.5 kg', 'Wedge-profile blade', 'Fibreglass handle'],
-    available: ['Standard', 'Heavy-Duty', 'Custom'],
-  },
-  {
-    id: 'sc05', filter: 'mattocks', accent: '#6A4E2E',
-    img: IMG['Cutter Mattock'],
-    SvgComp: SvgMattock,
-    name: 'Heavy Cutter Mattock',
-    badge: 'Mattocks',
-    desc: 'Dual-head combining an adze and pick. Breaks hardpan soil, clears roots and handles rough earthworks on large farms.',
-    specs: ['3.5 kg total', 'Powder-coated', 'OEM available'],
-    available: ['Pick Mattock', 'Cutter Mattock', 'Adze', 'Custom'],
-  },
-  {
-    id: 'sc06', filter: 'crowbars', accent: '#4A3E4A',
-    img: IMG['Hexagonal Crowbar'],
-    SvgComp: SvgCrowbar,
-    name: 'Hexagonal Crowbar',
-    badge: 'Crowbars',
-    desc: 'Solid hexagonal-section iron crowbar for prying, ground compaction and earth-moving. Multiple lengths and diameters.',
-    specs: ['1.2 m – 1.8 m', 'Ø25 – Ø32 mm', 'Custom-cut lengths'],
-    available: ['Standard', 'Heavy-duty', 'Tamping Bar', 'Custom'],
-  },
-  {
-    id: 'sc07', filter: 'hoes', accent: '#3D7A5E',
-    img: IMG['Draw Hoe – Wide Blade'],
-    SvgComp: SvgHoe,
-    name: 'Draw Hoe – Wide Blade',
+  })),
+
+  /* ── PICKS & MATTOCKS ── */
+  ...['p30','p31','p32','p33','p34','p35','p36','p37','p38','p39','p40'].map((id, i) => ({
+    id, filter: 'mattocks', accent: '#8A5C2E', SvgComp: SvgMattock,
+    img: `${B}PICKS & MATTOCKS/${id}.png`,
+    name: `Pick / Mattock ${i + 1}`,
+    badge: 'Picks & Mattocks',
+    desc: 'Cutter mattocks, pick mattocks, adzes and heavy pickaxes for hard soil, rocky ground and root clearance.',
+    specs: ['2 – 5 kg weight range', 'Powder-coated or plain', 'OEM available'],
+    available: ['Cutter', 'Pick', 'Adze', 'Custom'],
+  })),
+
+  /* ── HOES ── */
+  ...['p41','p42','p43','p44','p45','p46','p47','p48','p49','p50','p51','p52','p53','p54','p55','p56','p57','p58','p59'].map((id, i) => ({
+    id, filter: 'hoes', accent: '#3D7A5E', SvgComp: SvgHoe,
+    img: `${B}HOES/${id}.png`,
+    name: `Hoe / Rake ${i + 1}`,
     badge: 'Hoes',
-    desc: 'Wide-blade hoe for row cultivation and soil preparation in tropical and arid climates. Lightweight for all-day use.',
-    specs: ['200 mm blade width', 'Rust-resistant finish', 'Telescopic handle option'],
-    available: ['Narrow', 'Wide', 'Stirrup', 'Custom'],
-  },
+    desc: 'Draw hoes, stirrup hoes, warren hoes and garden rakes for weeding, cultivation and soil preparation.',
+    specs: ['Rust-resistant finish', 'Various blade widths', 'Lightweight build'],
+    available: ['Wide', 'Narrow', 'Stirrup', 'Custom'],
+  })),
+
+  /* ── BARS & CROWBARS ── */
+  ...['p27','p28','p29'].map((id, i) => ({
+    id, filter: 'bars', accent: '#4A4A5A', SvgComp: SvgCrowbar,
+    img: `${B}BARS/${id}.png`,
+    name: `Crowbar / Iron Bar ${i + 1}`,
+    badge: 'Bars & Crowbars',
+    desc: 'Hexagonal section crowbars, flat pry bars and tamping rods — custom-cut lengths and diameters.',
+    specs: ['Ø25 – Ø32 mm', 'Custom-cut lengths', 'Export-grade packing'],
+    available: ['Standard', 'Tamping', 'Point Bar', 'Custom'],
+  })),
+
+  /* ── BINETTES ── */
+  ...['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10'].map((id, i) => ({
+    id: `bin-${id}`, filter: 'binettes', accent: '#7A5C8A', SvgComp: SvgHoe,
+    img: `${B}BINETTES/${id}.png`,
+    name: `Binette ${i + 1}`,
+    badge: 'Binettes',
+    desc: 'Forged binettes for precision weeding and soil aeration — popular in European and Middle Eastern markets.',
+    specs: ['Forged steel head', 'Lightweight', 'Various profiles'],
+    available: ['Standard', 'Wide', 'Narrow', 'Custom'],
+  })),
+
+  /* ── FORGED HAMMERS ── */
+  ...['p11','p12','p13','p14','p15','p16'].map((id, i) => ({
+    id: `ham-${id}`, filter: 'hammers', accent: '#5A4A3A', SvgComp: SvgAxe,
+    img: `${B}FORGED HAMMERS/${id}.png`,
+    name: `Forged Hammer ${i + 1}`,
+    badge: 'Forged Hammers',
+    desc: 'Drop-forged steel hammers for construction, demolition and agricultural use — multiple head weights.',
+    specs: ['Drop-forged', 'Hardened face', 'Fibreglass or wood handle'],
+    available: ['Standard', 'Heavy-duty', 'Custom'],
+  })),
+
+  /* ── CUSTOM / OEM ── */
   {
-    id: 'sc08', filter: 'custom', accent: '#2E3D5C',
+    id: 'custom-01', filter: 'custom', accent: '#2E3D5C', SvgComp: SvgAxe,
     img: IMG['Single-Bit Felling Axe'],
-    SvgComp: SvgAxe,
-    name: 'Private Label Tool',
+    name: 'Private Label / OEM',
     badge: 'Custom / OEM',
-    desc: 'Your logo, your handle colour, your blade geometry — forged to your exact drawing. Flexible minimum orders.',
+    desc: 'Your logo, handle colour, blade geometry and packaging — forged to your exact drawing. Flexible MOQ.',
     specs: ['Any head weight', 'Any handle type', 'Full branding'],
     available: ['Logo engraving', 'Custom colour', 'Custom spec', 'OEM pack'],
   },
@@ -569,6 +584,8 @@ export default function Products() {
         title="Our Products"
         subtitle="Five tool families engineered for durability — every one adaptable to your exact specification."
         breadcrumb={[{ label: 'Products' }]}
+        ctaLabel="📄 Download Catalogue"
+        ctaHref={CATALOG_PDF}
       />
 
       {/* ── 1. Product range list ── */}
@@ -711,9 +728,19 @@ export default function Products() {
                   })}
                 </div>
 
-                <Link to="/contact#form" className="btn btn-on-dark" style={{ marginTop: '28px', display: 'inline-flex' }}>
-                  Request Full Catalogue <ArrowIcon />
-                </Link>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '28px' }}>
+                  <a
+                    href={CATALOG_PDF}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-on-dark"
+                  >
+                    📄 Download Catalogue <ArrowIcon />
+                  </a>
+                  <Link to="/contact#form" className="btn btn-ghost-light">
+                    Request a Quote
+                  </Link>
+                </div>
               </div>
             </div>
           )}
@@ -728,7 +755,18 @@ export default function Products() {
               <div className="eyebrow"><span className="idx">Tool Showcase</span><span className="rule" /></div>
               <h2>Browse by<br />category.</h2>
             </div>
-            <p className="sec-sub">Filter by tool type — every product ships to your spec. Request a sample or quote directly from the card.</p>
+            <div>
+              <p className="sec-sub">Filter by tool type — every product ships to your spec. Request a sample or quote directly from the card.</p>
+              <a
+                href={CATALOG_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm"
+                style={{ marginTop: '16px', display: 'inline-flex' }}
+              >
+                📄 Download Full Catalogue <ArrowIcon />
+              </a>
+            </div>
           </div>
 
           <div className="sc-filters reveal">
@@ -772,11 +810,11 @@ export default function Products() {
 
                 <div className="sc-body">
                   <h4 className="sc-name">{p.name}</h4>
-                  <p className="sc-desc">{p.desc}</p>
-                  <div className="sc-specs">
+                  {/* <p className="sc-desc">{p.desc}</p> */}
+                  {/* <div className="sc-specs">
                     {p.specs.map((s) => <span className="tag-chip" key={s}>{s}</span>)}
-                  </div>
-                  <div className="sc-variants">
+                  </div> */}
+                  {/* <div className="sc-variants">
                     {p.available.map((v) => (
                       <span
                         key={v}
@@ -785,7 +823,7 @@ export default function Products() {
                         {v}
                       </span>
                     ))}
-                  </div>
+                  </div> */}
                   <div className="sc-actions">
                     <Link to="/contact#form" className="btn btn-primary btn-sm">
                       Request Sample <ArrowIcon />
@@ -810,9 +848,19 @@ export default function Products() {
                 blade shape, steel grade, handle type, surface finish and branding.
               </p>
             </div>
-            <Link to="/contact#form" className="btn btn-on-dark">
-              Start a Custom Order <ArrowIcon />
-            </Link>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', flexShrink: 0 }}>
+              <a
+                href={CATALOG_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-on-dark"
+              >
+                📄 View Catalogue <ArrowIcon />
+              </a>
+              <Link to="/contact#form" className="btn btn-ghost-light">
+                Start Custom Order
+              </Link>
+            </div>
           </div>
         </div>
       </section>

@@ -284,8 +284,8 @@ export default function Export() {
         subtitle='We handle the entire process — from quote to your warehouse.'
         primaryLabel='Start an Inquiry'
         primaryTo='/contact#form'
-        secondLabel='Browse Products'
-        secondTo='/products'
+        secondLabel='📄 Download Catalogue'
+        secondHref={`${import.meta.env.BASE_URL}Make Well Product Catalouge.pdf`}
       />
     </>
   );
