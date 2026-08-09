@@ -254,11 +254,11 @@ export default function Home() {
             <div className='reveal'>
               <div className='home-product-photo'>
                 <img
-                  src={`${import.meta.env.BASE_URL}product/HOES/p41.png`}
+                  src={`${import.meta.env.BASE_URL}product/SHOVELS/p63.png`}
                   alt='Makewell Hoe — forged in Himatnagar, Gujarat'
                   loading='lazy'
                 />
-                <span className='tag'>MW — FORGED HOE / HEAT-TREATED HEAD</span>
+                <span className='tag'>MW — FORGED SHOVELS</span>
               </div>
             </div>
             <div className='reveal delay-2'>
