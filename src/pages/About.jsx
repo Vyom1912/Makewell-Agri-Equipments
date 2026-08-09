@@ -81,39 +81,13 @@ export default function About() {
         <div className='container'>
           <div className='about-grid'>
             <div className='about-visual reveal'>
-              <div className='line-illustration'>
-                <svg
-                  viewBox='0 0 200 200'
-                  fill='none'
-                  strokeWidth='1.4'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  aria-hidden='true'>
-                  <path d='M60 170 L155 62' />
-                  <path d='M136 34c22 0 40 18 40 40l-36 7-22-22 18-25z' />
-                  <circle
-                    cx='60'
-                    cy='170'
-                    r='3'
-                    fill='var(--ink-950)'
-                    stroke='none'
-                  />
-                  <path d='M20 30h30M35 15v30' strokeWidth='1' />
-                  <path d='M170 150h20M180 140v20' strokeWidth='1' />
-                  <path
-                    d='M50 90 L90 50'
-                    strokeDasharray='3 4'
-                    strokeWidth='0.8'
-                    opacity='0.4'
-                  />
-                  <path
-                    d='M40 140 L80 100'
-                    strokeDasharray='3 4'
-                    strokeWidth='0.8'
-                    opacity='0.4'
-                  />
-                </svg>
-                <span className='tag'>MW — LINE 01 / FORGED HEAD DETAIL</span>
+              <div className='home-product-photo'>
+                <img
+                  src='/Makewell-Agri-Equipments/img/MW Grub Hoe.png'
+                  alt='Makewell Grub Hoe — drop-forged in Himatnagar, Gujarat'
+                  loading='lazy'
+                />
+                <span className='tag'>MW — GRUB HOE / DROP-FORGED HEAD</span>
               </div>
             </div>
 

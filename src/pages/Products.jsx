@@ -270,6 +270,41 @@ const SvgMattock = SvgMattockCutter;
 const SvgHoe    = SvgHoeDrawWide;
 const SvgCrowbar = SvgCrowbarHex;
 
+/* ── Image map: variant name → public path ── */
+const BASE = '/Makewell-Agri-Equipments/img/';
+const IMG = {
+  // Axes
+  'Single-Bit Felling Axe':  `${BASE}MW Single-Bit Felling Axe.png`,
+  'Double-Bit Felling Axe':  `${BASE}MW Double-Bit Felling Axe.png`,
+  'Splitting Axe':            `${BASE}MW Splitting Axe.png`,
+  'Hatchet':                  `${BASE}MW Hatchet.png`,
+  "Hunter's Axe":             `${BASE}MW Hunter's Axe.png`,
+  // Shovels
+  'Round-Point Shovel':       `${BASE}MW Round-Point Shovel.png`,
+  'Square-Point Shovel':      `${BASE}MW Square-Point Shovel.png`,
+  'Trenching Shovel':         `${BASE}MW Trenching Shovel.png`,
+  'Garden Spade':             `${BASE}MW Garden Spade.png`,
+  'Transplanting Spade':      `${BASE}MW Transplanting Spade.png`,
+  // Mattocks
+  'Cutter Mattock':           `${BASE}MW Cutter Mattock.png`,
+  'Pick Mattock':             `${BASE}MW Pick Mattock.png`,
+  'Grub Hoe / Adze':         `${BASE}MW Grub Hoe.png`,
+  'Heavy Pickaxe':            `${BASE}MW Heavy Pickaxe.png`,
+  'Railroad Pick':            `${BASE}MW Railroad Pick.png`,
+  // Hoes
+  'Draw Hoe – Wide Blade':   `${BASE}MW Draw Hoe – Wide Blade.png`,
+  'Draw Hoe – Narrow Blade': `${BASE}MW Draw Hoe – Narrow Blade.png`,
+  'Stirrup / Hula Hoe':      `${BASE}MW Stirrup Hoe.png`,
+  'Garden Rake':              `${BASE}MW Garden Rake.png`,
+  'Warren Hoe':               `${BASE}MW Warren Hoe.png`,
+  // Crowbars
+  'Hexagonal Crowbar':        `${BASE}MW Hexagonal Crowbar.png`,
+  'Flat Pry Bar':             `${BASE}MW Flat Pry Bar.png`,
+  'Tamping Rod':              `${BASE}MW Tamping Rod.png`,
+  'Point Bar':                `${BASE}MW Point bar.png`,
+  'Custom-Cut Bar':           `${BASE}MW Custom-Cut Bar.png`,
+};
+
 /* ── Tool family browser data ── */
 const TOOL_FAMILIES = [
   {
@@ -368,6 +403,7 @@ const FILTERS = [
 const SHOWCASE = [
   {
     id: 'sc01', filter: 'shovels', accent: '#5C8A4A',
+    img: IMG['Round-Point Shovel'],
     SvgComp: SvgShovel,
     name: 'Round-Point Shovel',
     badge: 'Shovels',
@@ -377,6 +413,7 @@ const SHOWCASE = [
   },
   {
     id: 'sc02', filter: 'shovels', accent: '#3D7A5E',
+    img: IMG['Trenching Shovel'],
     SvgComp: SvgShovel,
     name: 'Trenching Shovel',
     badge: 'Shovels',
@@ -386,6 +423,7 @@ const SHOWCASE = [
   },
   {
     id: 'sc03', filter: 'axes', accent: '#7A4A2E',
+    img: IMG['Single-Bit Felling Axe'],
     SvgComp: SvgAxe,
     name: 'Single-Bit Felling Axe',
     badge: 'Axes',
@@ -395,6 +433,7 @@ const SHOWCASE = [
   },
   {
     id: 'sc04', filter: 'axes', accent: '#8A6A2E',
+    img: IMG['Splitting Axe'],
     SvgComp: SvgAxe,
     name: 'Splitting Axe',
     badge: 'Axes',
@@ -404,6 +443,7 @@ const SHOWCASE = [
   },
   {
     id: 'sc05', filter: 'mattocks', accent: '#6A4E2E',
+    img: IMG['Cutter Mattock'],
     SvgComp: SvgMattock,
     name: 'Heavy Cutter Mattock',
     badge: 'Mattocks',
@@ -413,6 +453,7 @@ const SHOWCASE = [
   },
   {
     id: 'sc06', filter: 'crowbars', accent: '#4A3E4A',
+    img: IMG['Hexagonal Crowbar'],
     SvgComp: SvgCrowbar,
     name: 'Hexagonal Crowbar',
     badge: 'Crowbars',
@@ -422,6 +463,7 @@ const SHOWCASE = [
   },
   {
     id: 'sc07', filter: 'hoes', accent: '#3D7A5E',
+    img: IMG['Draw Hoe – Wide Blade'],
     SvgComp: SvgHoe,
     name: 'Draw Hoe – Wide Blade',
     badge: 'Hoes',
@@ -431,6 +473,7 @@ const SHOWCASE = [
   },
   {
     id: 'sc08', filter: 'custom', accent: '#2E3D5C',
+    img: IMG['Single-Bit Felling Axe'],
     SvgComp: SvgAxe,
     name: 'Private Label Tool',
     badge: 'Custom / OEM',
@@ -443,27 +486,32 @@ const SHOWCASE = [
 /* ── Product range rows data ── */
 const PRODUCTS = [
   {
-    num: '01', SvgComp: SvgShovel, name: 'Shovels & Spades',
+    num: '01', SvgComp: SvgShovel, img: IMG['Round-Point Shovel'],
+    name: 'Shovels & Spades',
     desc: 'Round-point, square-point and trenching shovels for digging, lifting and earthmoving on farms and construction sites.',
     specs: ['High-carbon steel blade, heat-treated', 'Handle: wooden, fibreglass or steel', 'Weight range: 0.8 kg – 2.5 kg (head only)'],
   },
   {
-    num: '02', SvgComp: SvgAxe, name: 'Axes & Hatchets',
+    num: '02', SvgComp: SvgAxe, img: IMG['Single-Bit Felling Axe'],
+    name: 'Axes & Hatchets',
     desc: 'Felling axes, splitting axes and hatchets — drop-forged heads with ergonomic handles to reduce fatigue during extended use.',
     specs: ['Drop-forged high-carbon steel head', 'Single bit & double bit options', 'Custom logo branding, polished finish'],
   },
   {
-    num: '03', SvgComp: SvgMattock, name: 'Pickaxes & Mattocks',
+    num: '03', SvgComp: SvgMattock, img: IMG['Cutter Mattock'],
+    name: 'Pickaxes & Mattocks',
     desc: 'Heavy pick mattocks, cutter mattocks and adzes for breaking hard soil, rocky ground and root clearance.',
     specs: ['Weight range: 2 kg – 5 kg', 'Powder-coated or plain finish', 'OEM & private label available'],
   },
   {
-    num: '04', SvgComp: SvgHoe, name: 'Hoes & Rakes',
+    num: '04', SvgComp: SvgHoe, img: IMG['Draw Hoe – Wide Blade'],
+    name: 'Hoes & Rakes',
     desc: 'Draw hoes, stirrup hoes and garden rakes for weeding, cultivating and soil preparation in tropical and arid regions.',
     specs: ['Lightweight build for long-day use', 'Various blade widths available', 'Rust-resistant coated finish'],
   },
   {
-    num: '05', SvgComp: SvgCrowbar, name: 'Crowbars & Iron Bars',
+    num: '05', SvgComp: SvgCrowbar, img: IMG['Hexagonal Crowbar'],
+    name: 'Crowbars & Iron Bars',
     desc: 'Solid wrought iron crowbars, flat bars and tampers for prying, earthmoving and compaction on farms and worksites.',
     specs: ['Multiple diameters & cross-sections', 'Custom cut lengths per order', 'Export-grade individual packing'],
   },
@@ -516,8 +564,12 @@ export default function Products() {
             {PRODUCTS.map((p) => (
               <div className="item-row" key={p.num}>
                 <span className="row-num">{p.num}</span>
-                <div className="icon-box tool-svg-box">
-                  <p.SvgComp />
+                <div className="icon-box tool-img-box">
+                  {p.img ? (
+                    <img src={p.img} alt={p.name} loading="lazy" />
+                  ) : (
+                    <p.SvgComp />
+                  )}
                 </div>
                 <div className="info">
                   <h3>{p.name}</h3>
@@ -565,11 +617,21 @@ export default function Products() {
           {activeFam && (
             <div className="tf-panel reveal" key={activeFam.id} style={{ '--tf-color': activeFam.color }}>
               <div className="tf-panel-left">
-                {/* SVG illustration — swaps when a variant is selected */}
+                {/* Real product photo — falls back to SVG if image missing */}
                 <div className="tf-illustration" style={{ color: activeFam.color }}>
-                  <div className="tf-illus-svg" key={activeVariant}>
-                    <IllustSvg />
-                  </div>
+                  {IMG[activeVar?.name] ? (
+                    <div className="tf-illus-photo" key={activeVariant}>
+                      <img
+                        src={IMG[activeVar.name]}
+                        alt={activeVar.name}
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div className="tf-illus-svg" key={activeVariant}>
+                      <IllustSvg />
+                    </div>
+                  )}
                   <span className="tf-illus-label">
                     MW — {activeVar?.name?.toUpperCase() ?? activeFam.headline.toUpperCase()}
                   </span>
@@ -593,12 +655,18 @@ export default function Products() {
                         tabIndex={0}
                         onKeyDown={(e) => e.key === 'Enter' && setActiveVariant(i)}
                       >
-                        {/* Mobile inline SVG preview — visible only at ≤768px when active */}
+                        {/* Mobile inline preview — real photo or SVG fallback */}
                         {activeVariant === i && (
                           <div className="tf-variant-mobile-preview" aria-hidden="true">
-                            <div className="tf-illus-svg" key={`mob-${i}`}>
-                              <VariantSvg />
-                            </div>
+                            {IMG[v.name] ? (
+                              <div className="tf-illus-photo" key={`mob-${i}`}>
+                                <img src={IMG[v.name]} alt={v.name} loading="lazy" />
+                              </div>
+                            ) : (
+                              <div className="tf-illus-svg" key={`mob-${i}`}>
+                                <VariantSvg />
+                              </div>
+                            )}
                             <span className="tf-illus-label">
                               {v.name.toUpperCase()}
                             </span>
@@ -632,7 +700,7 @@ export default function Products() {
       </section>
 
       {/* ── 3. Tool Showcase — filterable cards ── */}
-      {/* <section className="section section-alt" ref={showcaseRef}>
+      <section className="section section-alt" ref={showcaseRef}>
         <div className="container">
           <div className="sec-head sec-head--row reveal">
             <div>
@@ -662,10 +730,21 @@ export default function Products() {
                 style={{ '--sc-accent': p.accent }}
               >
                 <div className="sc-thumb">
-                  <div className="sc-thumb-bg" aria-hidden="true" />
-                  <span className="sc-tool-svg" style={{ color: p.accent }} aria-hidden="true">
-                    <p.SvgComp />
-                  </span>
+                  {p.img ? (
+                    <img
+                      className="sc-thumb-photo"
+                      src={p.img}
+                      alt={p.name}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <>
+                      <div className="sc-thumb-bg" aria-hidden="true" />
+                      <span className="sc-tool-svg" style={{ color: p.accent }} aria-hidden="true">
+                        <p.SvgComp />
+                      </span>
+                    </>
+                  )}
                   <span className="sc-watermark" aria-hidden="true">MW</span>
                   <span className={`sc-badge sc-badge--${p.filter}`}>{p.badge}</span>
                 </div>
@@ -697,7 +776,7 @@ export default function Products() {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* ── 4. Custom order banner ── */}
       <section className="section">

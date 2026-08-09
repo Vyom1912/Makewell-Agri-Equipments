@@ -74,53 +74,85 @@ export default function Home() {
       <section className='hero' id='home'>
         <div className='hero-pattern' aria-hidden='true' />
         <div className='container'>
-          <div className='hero-topline'>
-            <span className='idx'>MW / 2026</span>
-            <span className='rule' />
-            <span className='loc'>Vaktapur, Himatnagar, Gujarat, India</span>
-          </div>
-          <div className='hero-content'>
-            <h1>
-              Precision-forged tools
-              <br />
-              <span className='thin'>for the world&apos;s fields.</span>
-            </h1>
-            <p className='lead'>
-              Makewell Agri Equipments manufactures and exports shovels, axes,
-              mattocks, hoes and spades — built to standard specification or
-              forged to a dealer&apos;s exact drawing. Trusted by dealers and
-              distributors across 50+ countries worldwide.
-            </p>
-            <div className='hero-actions'>
-              <Link to='/products' className='btn btn-primary'>
-                Explore Products <ArrowIcon />
-              </Link>
-              <Link to='/contact#form' className='btn btn-on-dark'>
-                Become a Dealer
-              </Link>
-            </div>
-          </div>
+          <div className='hero-inner'>
+            {/* Left — copy */}
+            <div className='hero-copy'>
+              <div className='hero-topline'>
+                <span className='idx'>MW / 2026</span>
+                <span className='rule' />
+                <span className='loc'>Vaktapur, Himatnagar, Gujarat, India</span>
+              </div>
+              <div className='hero-content'>
+                <h1>
+                  Precision-forged tools
+                  <br />
+                  <span className='thin'>for the world&apos;s fields.</span>
+                </h1>
+                <p className='lead'>
+                  Makewell Agri Equipments manufactures and exports shovels, axes,
+                  mattocks, hoes and spades — built to standard specification or
+                  forged to a dealer&apos;s exact drawing. Trusted by dealers and
+                  distributors across 50+ countries worldwide.
+                </p>
+                <div className='hero-actions'>
+                  <Link to='/products' className='btn btn-primary'>
+                    Explore Products <ArrowIcon />
+                  </Link>
+                  <Link to='/contact#form' className='btn btn-on-dark'>
+                    Become a Dealer
+                  </Link>
+                </div>
+              </div>
 
-          <div className='hero-ruler-row' ref={rulerRef}>
-            <div className='item'>
-              <span className='stat-num' data-target='30' data-suffix='+'>
-                30+
-              </span>
-              <span className='stat-label'>Years of Excellence</span>
+              <div className='hero-ruler-row' ref={rulerRef}>
+                <div className='item'>
+                  <span className='stat-num' data-target='30' data-suffix='+'>30+</span>
+                  <span className='stat-label'>Years of Excellence</span>
+                </div>
+                <div className='item'>
+                  <span className='stat-num' data-target='50' data-suffix='+'>50+</span>
+                  <span className='stat-label'>Countries Served</span>
+                </div>
+                <div className='item'>
+                  <span className='stat-num'>100%</span>
+                  <span className='stat-label'>Custom Spec Ready</span>
+                </div>
+                <div className='item'>
+                  <span className='stat-num'>OEM</span>
+                  <span className='stat-label'>Private Label Available</span>
+                </div>
+              </div>
             </div>
-            <div className='item'>
-              <span className='stat-num' data-target='50' data-suffix='+'>
-                50+
-              </span>
-              <span className='stat-label'>Countries Served</span>
-            </div>
-            <div className='item'>
-              <span className='stat-num'>100%</span>
-              <span className='stat-label'>Custom Spec Ready</span>
-            </div>
-            <div className='item'>
-              <span className='stat-num'>OEM</span>
-              <span className='stat-label'>Private Label Available</span>
+
+            {/* Right — product image showcase */}
+            <div className='hero-visual' aria-hidden='true'>
+              <div className='hero-img-grid'>
+                <div className='hero-img-card hero-img-card--main'>
+                  <img
+                    src='/Makewell-Agri-Equipments/img/MW Single-Bit Felling Axe.png'
+                    alt='Single-Bit Felling Axe'
+                    loading='eager'
+                  />
+                  <span className='hero-img-label'>Felling Axe</span>
+                </div>
+                <div className='hero-img-card hero-img-card--sm'>
+                  <img
+                    src='/Makewell-Agri-Equipments/img/MW Round-Point Shovel.png'
+                    alt='Round-Point Shovel'
+                    loading='eager'
+                  />
+                  <span className='hero-img-label'>Round-Point Shovel</span>
+                </div>
+                <div className='hero-img-card hero-img-card--sm'>
+                  <img
+                    src='/Makewell-Agri-Equipments/img/MW Cutter Mattock.png'
+                    alt='Cutter Mattock'
+                    loading='eager'
+                  />
+                  <span className='hero-img-label'>Cutter Mattock</span>
+                </div>
+              </div>
+              <span className='hero-visual-badge'>DROP-FORGED · HIMATNAGAR, GUJARAT</span>
             </div>
           </div>
         </div>
@@ -167,39 +199,13 @@ export default function Home() {
         <div className='container'>
           <div className='about-snippet-grid'>
             <div className='reveal'>
-              <div className='line-illustration'>
-                <svg
-                  viewBox='0 0 200 200'
-                  fill='none'
-                  strokeWidth='1.4'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  aria-hidden='true'>
-                  <path d='M60 170 L155 62' />
-                  <path d='M136 34c22 0 40 18 40 40l-36 7-22-22 18-25z' />
-                  <circle
-                    cx='60'
-                    cy='170'
-                    r='3'
-                    fill='var(--ink-950)'
-                    stroke='none'
-                  />
-                  <path d='M20 30h30M35 15v30' strokeWidth='1' />
-                  <path d='M170 150h20M180 140v20' strokeWidth='1' />
-                  <path
-                    d='M50 90 L90 50'
-                    strokeDasharray='3 4'
-                    strokeWidth='0.8'
-                    opacity='0.4'
-                  />
-                  <path
-                    d='M40 140 L80 100'
-                    strokeDasharray='3 4'
-                    strokeWidth='0.8'
-                    opacity='0.4'
-                  />
-                </svg>
-                <span className='tag'>MW — LINE 01 / FORGED HEAD DETAIL</span>
+              <div className='home-product-photo'>
+                <img
+                  src='/Makewell-Agri-Equipments/img/MW Grub Hoe.png'
+                  alt='Makewell Grub Hoe — forged in Himatnagar, Gujarat'
+                  loading='lazy'
+                />
+                <span className='tag'>MW — GRUB HOE / DROP-FORGED HEAD</span>
               </div>
             </div>
             <div className='reveal delay-2'>
