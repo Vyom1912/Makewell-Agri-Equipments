@@ -629,12 +629,12 @@ export default function Products() {
         title="Our Products"
         subtitle="Five tool families engineered for durability — every one adaptable to your exact specification."
         breadcrumb={[{ label: 'Products' }]}
-        ctaLabel="📄 Download Catalogue"
-        ctaHref={CATALOG_PDF}
+        // ctaLabel="📄 Download Catalogue"
+        // ctaHref={CATALOG_PDF}
       />
 
       {/* ── 1. Product range list ── */}
-      <section className="section" ref={listRef}>
+      {/* <section className="section" ref={listRef}>
         <div className="container">
           <div className="sec-head sec-head--row reveal">
             <div>
@@ -666,7 +666,7 @@ export default function Products() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── 2. Tool family browser — tabs + detail panel ── */}
       {/* <section className="section section-dark" ref={familyRef}>
@@ -912,7 +912,7 @@ export default function Products() {
       {/* ── 4. Custom order banner ── */}
       <section className="section">
         <div className="container">
-          <div className="custom-banner reveal">
+          <div className="custom-banner">
             <div className="txt">
               <h4>Don&apos;t see exactly what you need?</h4>
               <p>
