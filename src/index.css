@@ -540,6 +540,37 @@ section {
   background: rgba(156, 122, 46, 0.05);
   transform: scale(1.06);
 }
+
+/* Home page product row — adds CTA column on the right */
+.home-item-row {
+  grid-template-columns: 56px 72px 1fr auto;
+  align-items: center;
+  padding: 20px 12px;
+}
+.home-tool-img {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--r-md);
+  flex-shrink: 0;
+}
+.home-tool-img img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+.home-product-tagline {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--brass);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px !important;
+  margin-top: 0 !important;
+}
+.home-product-cta {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 .row-num {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -2772,6 +2803,13 @@ footer {
   .item-row .icon-box {
     /* keep visible on mobile — product photo is important */
     display: flex;
+  }
+  /* Home product rows: hide CTA button, collapse columns on mobile */
+  .home-item-row {
+    grid-template-columns: 40px 60px 1fr;
+  }
+  .home-product-cta {
+    display: none;
   }
   .process-rail-inner {
     grid-template-columns: 1fr 1fr;

@@ -46,6 +46,68 @@ const HOME_JSON_LD = {
   ]
 };
 
+const B = `${import.meta.env.BASE_URL}product/`;
+
+/* Product families shown on the home page */
+const HOME_PRODUCTS = [
+  {
+    num: '01',
+    img: `${B}SHOVELS/p64.png`,
+    name: 'Shovels & Spades',
+    tagline: 'Built for every dig.',
+    desc: 'Heat-treated blades in round-point, square-point, trenching and spade profiles. Wood, fibreglass or steel handles.',
+    link: '/products',
+  },
+  {
+    num: '02',
+    img: `${B}AXES/p17.png`,
+    name: 'Axes & Hatchets',
+    tagline: 'Drop-forged for every cut.',
+    desc: 'Felling axes, splitting axes and hatchets — precision-ground edges, hickory or fibreglass handles. Single and double bit.',
+    link: '/products',
+  },
+  {
+    num: '03',
+    img: `${B}PICKS & MATTOCKS/p30.png`,
+    name: 'Pickaxes & Mattocks',
+    tagline: 'Built for the hardest ground.',
+    desc: 'Cutter mattocks, pick mattocks and adzes that break hardpan, clear roots and handle rough earthworks.',
+    link: '/products',
+  },
+  {
+    num: '04',
+    img: `${B}HOES/p41.png`,
+    name: 'Hoes & Rakes',
+    tagline: 'Precision for the field.',
+    desc: 'Draw hoes, stirrup hoes and garden rakes for weeding and cultivation across tropical and arid markets.',
+    link: '/products',
+  },
+  {
+    num: '05',
+    img: `${B}BARS/p27.png`,
+    name: 'Crowbars & Iron Bars',
+    tagline: 'Solid iron, built to last.',
+    desc: 'Hexagonal crowbars, flat pry bars and tamping rods — custom-cut lengths, multiple diameters.',
+    link: '/products',
+  },
+  {
+    num: '06',
+    img: `${B}BINETTES/p1.png`,
+    name: 'Binettes',
+    tagline: 'Precision weeding tools.',
+    desc: 'Forged binettes for precision weeding and soil aeration — popular in European, African and Middle Eastern markets.',
+    link: '/products',
+  },
+  {
+    num: '07',
+    img: `${B}FORGED HAMMERS/p11.png`,
+    name: 'Forged Hammers',
+    tagline: 'Impact, every swing.',
+    desc: 'Drop-forged steel hammers in multiple head weights — construction, demolition and agricultural use.',
+    link: '/products',
+  },
+];
+
 function animateCounter(el, target, suffix) {
   let current = 0;
   const step = Math.max(1, Math.ceil(target / 50));
@@ -81,9 +143,11 @@ const HIGHLIGHTS = [
 ];
 
 export default function Home() {
-  const rulerRef = useRef(null);
-  const pageRef = useRef(null);
+  const rulerRef   = useRef(null);
+  const pageRef    = useRef(null);
+  const productsRef = useRef(null);
   useReveal(pageRef);
+  useReveal(productsRef);
 
   useEffect(() => {
     if (!rulerRef.current) return;
@@ -240,6 +304,57 @@ export default function Home() {
                 <p>{h.desc}</p>
                 <Link to={h.to} className='row-link'>
                   {h.cta} →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Product Range ── */}
+      <section className='section section-alt' ref={productsRef}>
+        <div className='container'>
+          <div className='sec-head sec-head--row reveal'>
+            <div>
+              <div className='eyebrow'>
+                <span className='idx'>What We Make</span>
+                <span className='rule' />
+              </div>
+              <h2>Seven tool families,<br />one forging standard.</h2>
+            </div>
+            <div>
+              <p className='sec-sub'>
+                Every category ships in multiple head shapes, weights and handle types —
+                each one forged to survive real work, adaptable to a dealer&apos;s exact specification.
+              </p>
+              <Link
+                to='/products'
+                className='btn btn-primary btn-sm'
+                style={{ marginTop: '16px', display: 'inline-flex' }}
+              >
+                Full Product Range <ArrowIcon />
+              </Link>
+            </div>
+          </div>
+
+          <div className='home-product-list item-list reveal'>
+            {HOME_PRODUCTS.map((p, i) => (
+              <div className='item-row home-item-row' key={p.num}>
+                <span className='row-num'>{p.num}</span>
+                <div className='icon-box tool-img-box home-tool-img'>
+                  <img src={p.img} alt={p.name} loading='lazy' />
+                </div>
+                <div className='info'>
+                  <h3>{p.name}</h3>
+                  <p className='home-product-tagline'>{p.tagline}</p>
+                  <p>{p.desc}</p>
+                </div>
+                <Link
+                  to={p.link}
+                  className='btn btn-outline btn-sm home-product-cta'
+                  aria-label={`View ${p.name}`}
+                >
+                  View Range <ArrowIcon />
                 </Link>
               </div>
             ))}
