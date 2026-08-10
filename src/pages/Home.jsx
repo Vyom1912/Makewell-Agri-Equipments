@@ -280,37 +280,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Highlights ── */}
-      <section className='section'>
-        <div className='container'>
-          <SectionHead
-            eyebrow='Why Makewell'
-            title={
-              <>
-                Built for dealers.
-                <br />
-                Designed for the world.
-              </>
-            }
-            className='reveal'
-          />
-          <div className='highlights-grid'>
-            {HIGHLIGHTS.map((h, i) => (
-              <div
-                className={`highlight-card reveal delay-${i + 1}`}
-                key={h.title}>
-                <div className='hc-icon'>{h.icon}</div>
-                <h3>{h.title}</h3>
-                <p>{h.desc}</p>
-                <Link to={h.to} className='row-link'>
-                  {h.cta} →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+    
       {/* ── Product Range ── */}
       <section className='section section-alt' ref={productsRef}>
         <div className='container'>
@@ -411,6 +381,39 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
+  {/* ── Highlights ── */}
+      <section className='section'>
+        <div className='container'>
+          <SectionHead
+            eyebrow='Why Makewell'
+            title={
+              <>
+                Built for dealers.
+                <br />
+                Designed for the world.
+              </>
+            }
+            className='reveal'
+          />
+          <div className='highlights-grid'>
+            {HIGHLIGHTS.map((h, i) => (
+              <div
+                className={`highlight-card reveal delay-${i + 1}`}
+                key={h.title}>
+                <div className='hc-icon'>{h.icon}</div>
+                <h3>{h.title}</h3>
+                <p>{h.desc}</p>
+                <Link to={h.to} className='row-link'>
+                  {h.cta} →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* ── Testimonials ── */}
       <Testimonials />

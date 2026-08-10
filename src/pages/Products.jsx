@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useReveal } from '../hooks/useReveal';
 import PageHero  from '../components/PageHero';
@@ -584,6 +584,81 @@ function seededShuffle(arr) {
 
 const SHOWCASE_SHUFFLED = seededShuffle(SHOWCASE);
 
+/* ── Product detail modal ── */
+function ProductModal({ product, onClose }) {
+  // Close on Escape key
+  useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', handler);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handler);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
+  if (!product) return null;
+
+  return (
+    /* Backdrop — click outside to close */
+    <div
+      className='pm-backdrop'
+      onClick={onClose}
+      role='dialog'
+      aria-modal='true'
+      aria-label={product.name}
+    >
+      <div
+        className='pm-card'
+        onClick={(e) => e.stopPropagation()} /* prevent backdrop close */
+      >
+        {/* Close button */}
+        <button className='pm-close' onClick={onClose} aria-label='Close'>
+          ✕
+        </button>
+
+        {/* Image */}
+        <div className='pm-img'>
+          {product.img ? (
+            <img src={product.img} alt={product.name} loading='lazy' />
+          ) : product.SvgComp ? (
+            <div className='pm-svg'><product.SvgComp /></div>
+          ) : null}
+        </div>
+
+        {/* Details */}
+        <div className='pm-body'>
+          {product.badge && (
+            <span className='pm-badge'>{product.badge}</span>
+          )}
+          <h3 className='pm-title'>{product.name}</h3>
+          {/* {product.desc && <p className='pm-desc'>{product.desc}</p>} */}
+
+          {/* {product.specs && product.specs.length > 0 && (
+            <ul className='pm-specs'>
+              {product.specs.map((s) => (
+                <li key={s} className='pm-spec-item'>
+                  <span className='pm-spec-dot' />
+                  {s}
+                </li>
+              ))}
+            </ul>
+          )} */}
+
+          <Link
+            to='/contact#form'
+            className='btn btn-primary btn-full'
+            onClick={onClose}
+          >
+            Get a Quote <ArrowIcon />
+          </Link>
+          <p className='pm-note'>We respond within 24 hours on business days.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Products() {
   const listRef      = useRef(null);
   const familyRef    = useRef(null);
@@ -592,6 +667,10 @@ export default function Products() {
   const [activeVariant, setActiveVariant] = useState(0);
   const [activeFilter,  setActiveFilter]  = useState('all');
   const [page,          setPage]          = useState(1);
+  const [modal,         setModal]         = useState(null); // holds product object
+
+  const openModal  = useCallback((product) => setModal(product), []);
+  const closeModal = useCallback(() => setModal(null), []);
   useReveal(listRef);
   useReveal(familyRef);
   useReveal(showcaseRef);
@@ -833,6 +912,11 @@ export default function Products() {
                 className={`sc-card reveal delay-${(i % 4) + 1}`}
                 key={p.id}
                 style={{ '--sc-accent': p.accent }}
+                onClick={() => openModal(p)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && openModal(p)}
+                aria-label={`View details for ${p.name}`}
               >
                 <div className="sc-thumb">
                   {p.img ? (
@@ -857,9 +941,12 @@ export default function Products() {
                 <div className="sc-body">
                   <h4 className="sc-name">{p.name}</h4>
                   <div className="sc-actions">
-                    <Link to="/contact#form" className="btn btn-primary btn-sm btn-full">
+                    <button
+                      className="btn btn-primary btn-sm btn-full"
+                      onClick={(e) => { e.stopPropagation(); openModal(p); }}
+                    >
                       Get a Quote <ArrowIcon />
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -936,6 +1023,8 @@ export default function Products() {
           </div>
         </div>
       </section>
+      {/* ── Product detail modal ── */}
+      {modal && <ProductModal product={modal} onClose={closeModal} />}
     </>
   );
 }
