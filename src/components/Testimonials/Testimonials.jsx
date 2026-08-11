@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import { useReveal } from "../hooks/useReveal";
-
+import { useReveal } from "../../hooks/useReveal";
+import "./Testimonials.css";
 const TESTIMONIALS = [
   {
     initials: "AR",

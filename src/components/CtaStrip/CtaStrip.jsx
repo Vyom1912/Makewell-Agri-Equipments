@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import ArrowIcon from "./ArrowIcon";
-
+import { ArrowIcon } from "../index";
+import "./CtaStrip.css";
 /**
  * Reusable full-width CTA strip.
  *
@@ -27,25 +27,33 @@ export default function CtaStrip({
           </div>
           <div className='cta-strip-actions'>
             {primaryHref ? (
-              <a href={primaryHref} className='btn btn-on-dark' target={primaryHref.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+              <a
+                href={primaryHref}
+                className='btn btn-on-dark'
+                target={primaryHref.startsWith("http") ? "_blank" : undefined}
+                rel='noopener noreferrer'>
                 {primaryLabel} <ArrowIcon />
               </a>
             ) : (
-              <Link to={primaryTo ?? '/contact'} className='btn btn-on-dark'>
+              <Link to={primaryTo ?? "/contact"} className='btn btn-on-dark'>
                 {primaryLabel} <ArrowIcon />
               </Link>
             )}
-            {secondLabel && (secondTo || secondHref) && (
-              secondHref ? (
-                <a href={secondHref} className='btn btn-outline-white' target={secondHref.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+            {secondLabel &&
+              (secondTo || secondHref) &&
+              (secondHref ? (
+                <a
+                  href={secondHref}
+                  className='btn btn-outline-white'
+                  target={secondHref.startsWith("http") ? "_blank" : undefined}
+                  rel='noopener noreferrer'>
                   {secondLabel}
                 </a>
               ) : (
                 <Link to={secondTo} className='btn btn-outline-white'>
                   {secondLabel}
                 </Link>
-              )
-            )}
+              ))}
           </div>
         </div>
       </div>

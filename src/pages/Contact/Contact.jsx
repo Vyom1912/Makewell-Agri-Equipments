@@ -1,199 +1,16 @@
 import { useRef, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useReveal } from "../hooks/useReveal";
-import PageHero from "../components/PageHero";
-import ArrowIcon from "../components/ArrowIcon";
-import CtaStrip from "../components/CtaStrip";
-import SEO from "../components/SEO";
+import { useReveal } from "../../hooks/useReveal";
+import { PageHero, ArrowIcon, CtaStrip, SEO } from "../../components";
+import {
+  PHONE_RAW, PHONE_DISPLAY, EMAIL, WHATSAPP_URL,
+  CONTACT_DETAILS, COUNTRIES, PRODUCT_OPTIONS,
+} from "../../data/contactData";
+import "./Contact.css";
 
-/* ── Real contact details ─────────────────────────────────── */
-export const PHONE_RAW = "+919825270190";
-export const PHONE_DISPLAY = "+91 98252 70190";
-export const EMAIL = "makewellagri@gmail.com";
-export const WHATSAPP_URL = `https://wa.me/${PHONE_RAW.replace("+", "")}`;
+// Re-export contact constants so Footer.jsx can still import from here
+export { PHONE_RAW, PHONE_DISPLAY, EMAIL, WHATSAPP_URL };
 
-/* ── Country list: { name, code (ISO), dial } ─────────────── */
-const COUNTRIES = [
-  { name: "Afghanistan",                 code: "AF", dial: "+93"   },
-  { name: "Albania",                     code: "AL", dial: "+355"  },
-  { name: "Algeria",                     code: "DZ", dial: "+213"  },
-  { name: "Andorra",                     code: "AD", dial: "+376"  },
-  { name: "Angola",                      code: "AO", dial: "+244"  },
-  { name: "Argentina",                   code: "AR", dial: "+54"   },
-  { name: "Armenia",                     code: "AM", dial: "+374"  },
-  { name: "Australia",                   code: "AU", dial: "+61"   },
-  { name: "Austria",                     code: "AT", dial: "+43"   },
-  { name: "Azerbaijan",                  code: "AZ", dial: "+994"  },
-  { name: "Bahrain",                     code: "BH", dial: "+973"  },
-  { name: "Bangladesh",                  code: "BD", dial: "+880"  },
-  { name: "Belarus",                     code: "BY", dial: "+375"  },
-  { name: "Belgium",                     code: "BE", dial: "+32"   },
-  { name: "Bolivia",                     code: "BO", dial: "+591"  },
-  { name: "Bosnia and Herzegovina",      code: "BA", dial: "+387"  },
-  { name: "Brazil",                      code: "BR", dial: "+55"   },
-  { name: "Bulgaria",                    code: "BG", dial: "+359"  },
-  { name: "Cambodia",                    code: "KH", dial: "+855"  },
-  { name: "Cameroon",                    code: "CM", dial: "+237"  },
-  { name: "Canada",                      code: "CA", dial: "+1"    },
-  { name: "Chile",                       code: "CL", dial: "+56"   },
-  { name: "China",                       code: "CN", dial: "+86"   },
-  { name: "Colombia",                    code: "CO", dial: "+57"   },
-  { name: "Costa Rica",                  code: "CR", dial: "+506"  },
-  { name: "Croatia",                     code: "HR", dial: "+385"  },
-  { name: "Cuba",                        code: "CU", dial: "+53"   },
-  { name: "Cyprus",                      code: "CY", dial: "+357"  },
-  { name: "Czech Republic",              code: "CZ", dial: "+420"  },
-  { name: "Denmark",                     code: "DK", dial: "+45"   },
-  { name: "Dominican Republic",          code: "DO", dial: "+1"    },
-  { name: "Ecuador",                     code: "EC", dial: "+593"  },
-  { name: "Egypt",                       code: "EG", dial: "+20"   },
-  { name: "El Salvador",                 code: "SV", dial: "+503"  },
-  { name: "Estonia",                     code: "EE", dial: "+372"  },
-  { name: "Ethiopia",                    code: "ET", dial: "+251"  },
-  { name: "Finland",                     code: "FI", dial: "+358"  },
-  { name: "France",                      code: "FR", dial: "+33"   },
-  { name: "Georgia",                     code: "GE", dial: "+995"  },
-  { name: "Germany",                     code: "DE", dial: "+49"   },
-  { name: "Ghana",                       code: "GH", dial: "+233"  },
-  { name: "Greece",                      code: "GR", dial: "+30"   },
-  { name: "Guatemala",                   code: "GT", dial: "+502"  },
-  { name: "Honduras",                    code: "HN", dial: "+504"  },
-  { name: "Hungary",                     code: "HU", dial: "+36"   },
-  { name: "Iceland",                     code: "IS", dial: "+354"  },
-  { name: "India",                       code: "IN", dial: "+91"   },
-  { name: "Indonesia",                   code: "ID", dial: "+62"   },
-  { name: "Iran",                        code: "IR", dial: "+98"   },
-  { name: "Iraq",                        code: "IQ", dial: "+964"  },
-  { name: "Ireland",                     code: "IE", dial: "+353"  },
-  { name: "Israel",                      code: "IL", dial: "+972"  },
-  { name: "Italy",                       code: "IT", dial: "+39"   },
-  { name: "Jamaica",                     code: "JM", dial: "+1"    },
-  { name: "Japan",                       code: "JP", dial: "+81"   },
-  { name: "Jordan",                      code: "JO", dial: "+962"  },
-  { name: "Kazakhstan",                  code: "KZ", dial: "+7"    },
-  { name: "Kenya",                       code: "KE", dial: "+254"  },
-  { name: "Kuwait",                      code: "KW", dial: "+965"  },
-  { name: "Kyrgyzstan",                  code: "KG", dial: "+996"  },
-  { name: "Laos",                        code: "LA", dial: "+856"  },
-  { name: "Latvia",                      code: "LV", dial: "+371"  },
-  { name: "Lebanon",                     code: "LB", dial: "+961"  },
-  { name: "Libya",                       code: "LY", dial: "+218"  },
-  { name: "Lithuania",                   code: "LT", dial: "+370"  },
-  { name: "Luxembourg",                  code: "LU", dial: "+352"  },
-  { name: "Malaysia",                    code: "MY", dial: "+60"   },
-  { name: "Maldives",                    code: "MV", dial: "+960"  },
-  { name: "Mexico",                      code: "MX", dial: "+52"   },
-  { name: "Moldova",                     code: "MD", dial: "+373"  },
-  { name: "Mongolia",                    code: "MN", dial: "+976"  },
-  { name: "Morocco",                     code: "MA", dial: "+212"  },
-  { name: "Mozambique",                  code: "MZ", dial: "+258"  },
-  { name: "Myanmar",                     code: "MM", dial: "+95"   },
-  { name: "Nepal",                       code: "NP", dial: "+977"  },
-  { name: "Netherlands",                 code: "NL", dial: "+31"   },
-  { name: "New Zealand",                 code: "NZ", dial: "+64"   },
-  { name: "Nicaragua",                   code: "NI", dial: "+505"  },
-  { name: "Nigeria",                     code: "NG", dial: "+234"  },
-  { name: "North Korea",                 code: "KP", dial: "+850"  },
-  { name: "Norway",                      code: "NO", dial: "+47"   },
-  { name: "Oman",                        code: "OM", dial: "+968"  },
-  { name: "Pakistan",                    code: "PK", dial: "+92"   },
-  { name: "Panama",                      code: "PA", dial: "+507"  },
-  { name: "Paraguay",                    code: "PY", dial: "+595"  },
-  { name: "Peru",                        code: "PE", dial: "+51"   },
-  { name: "Philippines",                 code: "PH", dial: "+63"   },
-  { name: "Poland",                      code: "PL", dial: "+48"   },
-  { name: "Portugal",                    code: "PT", dial: "+351"  },
-  { name: "Qatar",                       code: "QA", dial: "+974"  },
-  { name: "Romania",                     code: "RO", dial: "+40"   },
-  { name: "Russia",                      code: "RU", dial: "+7"    },
-  { name: "Rwanda",                      code: "RW", dial: "+250"  },
-  { name: "Saudi Arabia",                code: "SA", dial: "+966"  },
-  { name: "Senegal",                     code: "SN", dial: "+221"  },
-  { name: "Serbia",                      code: "RS", dial: "+381"  },
-  { name: "Singapore",                   code: "SG", dial: "+65"   },
-  { name: "Slovakia",                    code: "SK", dial: "+421"  },
-  { name: "Slovenia",                    code: "SI", dial: "+386"  },
-  { name: "Somalia",                     code: "SO", dial: "+252"  },
-  { name: "South Africa",                code: "ZA", dial: "+27"   },
-  { name: "South Korea",                 code: "KR", dial: "+82"   },
-  { name: "Spain",                       code: "ES", dial: "+34"   },
-  { name: "Sri Lanka",                   code: "LK", dial: "+94"   },
-  { name: "Sudan",                       code: "SD", dial: "+249"  },
-  { name: "Sweden",                      code: "SE", dial: "+46"   },
-  { name: "Switzerland",                 code: "CH", dial: "+41"   },
-  { name: "Syria",                       code: "SY", dial: "+963"  },
-  { name: "Taiwan",                      code: "TW", dial: "+886"  },
-  { name: "Tajikistan",                  code: "TJ", dial: "+992"  },
-  { name: "Tanzania",                    code: "TZ", dial: "+255"  },
-  { name: "Thailand",                    code: "TH", dial: "+66"   },
-  { name: "Tunisia",                     code: "TN", dial: "+216"  },
-  { name: "Turkey",                      code: "TR", dial: "+90"   },
-  { name: "Turkmenistan",                code: "TM", dial: "+993"  },
-  { name: "Uganda",                      code: "UG", dial: "+256"  },
-  { name: "Ukraine",                     code: "UA", dial: "+380"  },
-  { name: "United Arab Emirates",        code: "AE", dial: "+971"  },
-  { name: "United Kingdom",              code: "GB", dial: "+44"   },
-  { name: "United States",               code: "US", dial: "+1"    },
-  { name: "Uruguay",                     code: "UY", dial: "+598"  },
-  { name: "Uzbekistan",                  code: "UZ", dial: "+998"  },
-  { name: "Venezuela",                   code: "VE", dial: "+58"   },
-  { name: "Vietnam",                     code: "VN", dial: "+84"   },
-  { name: "Yemen",                       code: "YE", dial: "+967"  },
-  { name: "Zimbabwe",                    code: "ZW", dial: "+263"  },
-];
-
-const DETAILS = [
-  {
-    ic: "📍",
-    label: "Address",
-    value: (
-      <>
-        Makewell Agri Equipments
-        <br />
-        Vaktapur, Himatnagar – 383001
-        <br />
-        Sabarkantha, Gujarat, India
-      </>
-    ),
-  },
-  {
-    ic: "📞",
-    label: "Phone / WhatsApp",
-    value: (
-      <>
-        <a href={`tel:${PHONE_RAW}`}>{PHONE_DISPLAY}</a>
-        <br />
-        <a
-          href={WHATSAPP_URL}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='cic-dim'>
-          WhatsApp ↗
-        </a>
-      </>
-    ),
-  },
-  {
-    ic: "✉️",
-    label: "Email",
-    value: (
-      <>
-        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-      </>
-    ),
-  },
-  {
-    ic: "🕐",
-    label: "Business Hours",
-    value: (
-      <>
-        Mon, Wed – Sun: 9:00 am – 6:00 pm IST
-        <br />
-        <span className='cic-dim'>Tuesday: Closed</span>
-      </>
-    ),
-  },
-];
 
 export default function Contact({ showToast }) {
   const infoRef = useRef(null);
@@ -280,14 +97,30 @@ export default function Contact({ showToast }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name.trim()) { showToast("Please enter your full name."); return; }
-    if (!form.email.trim()) { showToast("Please enter your email address."); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      setEmailError("Please enter a valid email address."); return;
+    if (!form.name.trim()) {
+      showToast("Please enter your full name.");
+      return;
     }
-    if (emailError) { document.getElementById("cn-email")?.focus(); return; }
-    if (emailChecking) { showToast("Please wait — verifying your email address."); return; }
-    if (!form.message.trim()) { showToast("Please describe your requirement."); return; }
+    if (!form.email.trim()) {
+      showToast("Please enter your email address.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    }
+    if (emailError) {
+      document.getElementById("cn-email")?.focus();
+      return;
+    }
+    if (emailChecking) {
+      showToast("Please wait — verifying your email address.");
+      return;
+    }
+    if (!form.message.trim()) {
+      showToast("Please describe your requirement.");
+      return;
+    }
 
     // Build full phone string for the email
     const fullPhone = form.phone.trim()
@@ -312,7 +145,10 @@ export default function Contact({ showToast }) {
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify(payload),
       });
       const data = await res.json();
@@ -322,7 +158,9 @@ export default function Contact({ showToast }) {
         setSuccess(true);
         setTimeout(() => setSuccess(false), 6000);
       } else {
-        showToast("Something went wrong. Please try again or email us directly.");
+        showToast(
+          "Something went wrong. Please try again or email us directly.",
+        );
       }
     } catch {
       showToast("Network error. Please check your connection and try again.");
@@ -334,28 +172,28 @@ export default function Contact({ showToast }) {
   return (
     <>
       <SEO
-        title="Contact Us — Get a Quote for Agricultural Tools"
-        description="Contact Makewell Agri Equipments for bulk orders, export inquiries and custom manufacturing. Call, WhatsApp or email us. Based in Himatnagar, Gujarat, India. Response within 24 hours."
-        canonical="/contact"
+        title='Contact Us — Get a Quote for Agricultural Tools'
+        description='Contact Makewell Agri Equipments for bulk orders, export inquiries and custom manufacturing. Call, WhatsApp or email us. Based in Himatnagar, Gujarat, India. Response within 24 hours.'
+        canonical='/contact'
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          "url": "https://www.makewellagriequipments.com/contact",
-          "name": "Contact Makewell Agri Equipments",
-          "mainEntity": {
+          url: "https://www.makewellagriequipments.com/contact",
+          name: "Contact Makewell Agri Equipments",
+          mainEntity: {
             "@type": "Organization",
-            "name": "Makewell Agri Equipments",
-            "telephone": "+91-98252-70190",
-            "email": "makewellagri@gmail.com",
-            "address": {
+            name: "Makewell Agri Equipments",
+            telephone: "+91-98252-70190",
+            email: "makewellagri@gmail.com",
+            address: {
               "@type": "PostalAddress",
-              "streetAddress": "Vaktapur",
-              "addressLocality": "Himatnagar",
-              "addressRegion": "Gujarat",
-              "postalCode": "383001",
-              "addressCountry": "IN"
-            }
-          }
+              streetAddress: "Vaktapur",
+              addressLocality: "Himatnagar",
+              addressRegion: "Gujarat",
+              postalCode: "383001",
+              addressCountry: "IN",
+            },
+          },
         }}
       />
       <PageHero
@@ -368,14 +206,27 @@ export default function Contact({ showToast }) {
       <section className='contact-info-bar' ref={infoRef}>
         <div className='container'>
           <div className='contact-info-cells'>
-            {DETAILS.map((d, i) => (
-              <div
-                className={`contact-info-cell reveal delay-${i + 1}`}
-                key={d.label}>
+            {CONTACT_DETAILS.map((d, i) => (
+              <div className={`contact-info-cell reveal delay-${i + 1}`} key={d.label}>
                 <div className='cic-icon'>{d.ic}</div>
                 <div>
                   <span className='cic-label'>{d.label}</span>
-                  <div className='cic-value'>{d.value}</div>
+                  <div className='cic-value'>
+                    {d.lines && d.lines.map((line, j) => (
+                      <span key={j}>{line}{j < d.lines.length - 1 && <br />}</span>
+                    ))}
+                    {d.phone && (
+                      <>
+                        <a href={`tel:${PHONE_RAW}`}>{PHONE_DISPLAY}</a>
+                        <br />
+                        <a href={WHATSAPP_URL} target='_blank' rel='noopener noreferrer' className='cic-dim'>
+                          WhatsApp ↗
+                        </a>
+                      </>
+                    )}
+                    {d.email && <a href={`mailto:${EMAIL}`}>{EMAIL}</a>}
+                    {d.note && <span className='cic-dim'>{d.note}</span>}
+                  </div>
                 </div>
               </div>
             ))}
@@ -393,7 +244,11 @@ export default function Contact({ showToast }) {
                 <span className='idx'>Our Location</span>
                 <span className='rule' />
               </div>
-              <h2 style={{ fontSize: "clamp(22px,2.8vw,34px)", marginBottom: "20px" }}>
+              <h2
+                style={{
+                  fontSize: "clamp(22px,2.8vw,34px)",
+                  marginBottom: "20px",
+                }}>
                 Find us in Himatnagar,
                 <br />
                 Gujarat.
@@ -447,7 +302,6 @@ export default function Contact({ showToast }) {
                   </p>
                 </div>
                 <form onSubmit={handleSubmit} noValidate>
-
                   {/* Row 1 — Name + Company */}
                   <div className='form-row'>
                     <div className='field field--light'>
@@ -479,7 +333,8 @@ export default function Contact({ showToast }) {
 
                   {/* Row 2 — Email + Phone with dial code */}
                   <div className='form-row'>
-                    <div className={`field field--light${emailError ? " field--error" : ""}`}>
+                    <div
+                      className={`field field--light${emailError ? " field--error" : ""}`}>
                       <label htmlFor='cn-email'>Email Address *</label>
                       <input
                         type='email'
@@ -491,14 +346,19 @@ export default function Contact({ showToast }) {
                         onChange={handleChange}
                         onBlur={(e) => validateEmail(e.target.value)}
                         autoComplete='email'
-                        aria-describedby={emailError ? "cn-email-error" : undefined}
+                        aria-describedby={
+                          emailError ? "cn-email-error" : undefined
+                        }
                         aria-invalid={!!emailError}
                       />
                       {emailChecking && (
                         <span className='field-hint'>Verifying…</span>
                       )}
                       {emailError && (
-                        <span className='field-error' id='cn-email-error' role='alert'>
+                        <span
+                          className='field-error'
+                          id='cn-email-error'
+                          role='alert'>
                           {emailError}
                         </span>
                       )}
@@ -556,13 +416,9 @@ export default function Contact({ showToast }) {
                         value={form.product}
                         onChange={handleChange}>
                         <option value=''>— Select —</option>
-                        <option>Shovels &amp; Spades</option>
-                        <option>Axes &amp; Hatchets</option>
-                        <option>Pickaxes &amp; Mattocks</option>
-                        <option>Hoes &amp; Rakes</option>
-                        <option>Crowbars &amp; Iron Bars</option>
-                        <option>Custom / OEM Manufacturing</option>
-                        <option>Multiple Products</option>
+                        {PRODUCT_OPTIONS.map((opt) => (
+                          <option key={opt}>{opt}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -593,7 +449,8 @@ export default function Contact({ showToast }) {
                   </p>
                   {success && (
                     <div className='contact-form-success show' role='alert'>
-                      ✓ Your inquiry has been sent. We&apos;ll be in touch shortly.
+                      ✓ Your inquiry has been sent. We&apos;ll be in touch
+                      shortly.
                     </div>
                   )}
                 </form>

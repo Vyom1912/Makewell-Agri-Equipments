@@ -1,127 +1,8 @@
 import { useRef } from "react";
-import { useReveal } from "../hooks/useReveal";
-import PageHero from "../components/PageHero";
-import ArrowIcon from "../components/ArrowIcon";
-import CtaStrip from "../components/CtaStrip";
-import SEO from "../components/SEO";
-
-const REGIONS = [
-  {
-    num: "01",
-    name: "Americas",
-    countries:
-      "USA · Canada · Argentina · Mexico · Brazil · Chile · Colombia · Peru · Ecuador · Venezuela",
-  },
-  {
-    num: "02",
-    name: "Europe ",
-    countries:
-      "United Kingdom · Germany · Netherlands · France · Belgium · Italy · Spain · Poland ",
-  },
-  {
-    num: "03",
-    name: "Middle East",
-    countries:
-      "UAE · Saudi Arabia · Oman · Yemen · Jordan · Kuwait · Qatar · Bahrain",
-  },
-  {
-    num: "04",
-    name: "Africa",
-    countries:
-      "Nigeria · Ghana · Kenya · Tanzania · Mozambique · Ethiopia · South Africa · Uganda",
-  },
-
-  {
-    num: "05",
-    name: "South & Southeast Asia",
-    countries:
-      "Bangladesh · Sri Lanka · Nepal · Myanmar · Philippines · Pakistan · Cambodia",
-  },
-];
-
-const FEATURES = [
-  "DGFT / RCMC certified export house",
-  "Sea freight & air freight options",
-  "FCL & LCL container packing",
-  "All trade documents handled in-house",
-  "Private label & OEM branding",
-  "L/C, T/T & flexible payment terms",
-  "Pre-shipment inspection available",
-];
-
-/* Process steps — same data shape as products so item-row works */
-const PROCESS_STEPS = [
-  {
-    num: "01",
-    icon: "💬",
-    title: "Inquiry & Quotation",
-    desc: "Submit your requirement. We respond with pricing, lead time and product specification within 24–48 hours.",
-    specs: [
-      "24–48 hr response",
-      "Product spec included",
-      "No commitment required",
-    ],
-  },
-  {
-    num: "02",
-    icon: "📝",
-    title: "Order Confirmation",
-    desc: "Purchase order raised, advance payment or L/C arranged. Production slot confirmed in our schedule.",
-    specs: [
-      "L/C or T/T accepted",
-      "Slot confirmed in writing",
-      "Flexible lead times",
-    ],
-  },
-  {
-    num: "03",
-    icon: "⚒️",
-    title: "Production",
-    desc: "Tools manufactured, quality-inspected and packed to export grade as per your approved specification.",
-    specs: ["Dimensional QC", "Hardness-tested", "Export-grade packing"],
-  },
-  {
-    num: "04",
-    icon: "🚢",
-    title: "Shipping & Documents",
-    desc: "Cargo booked, BL / AWB issued, all trade documents — invoice, packing list, COO — prepared in-house.",
-    specs: ["All docs in-house", "BL / AWB issued", "COO available"],
-  },
-  {
-    num: "05",
-    icon: "✅",
-    title: "Delivery & Support",
-    desc: "Shipment tracked to destination. Post-delivery support and reorder process immediately available.",
-    specs: [
-      "Shipment tracking",
-      "Post-delivery support",
-      "Easy reorder process",
-    ],
-  },
-];
-
-const LOGISTICS = [
-  {
-    icon: "🏭",
-    title: "Manufacturing Hub",
-    body: "Himatnagar, Sabarkantha — India's most prominent agricultural hand tool cluster with a century-old forging tradition.",
-  },
-  {
-    icon: "🛣️",
-    title: "Road Connectivity",
-    body: "Direct NH-48 highway access. Ahmedabad 90 km — connecting to the national road network and all major ports.",
-  },
-  {
-    icon: "🚢",
-    title: "Port Access",
-    body: "Mundra Port ~220 km · Kandla Port ~250 km — two of India's largest cargo ports on global shipping lanes.",
-  },
-  {
-    icon: "✈️",
-    title: "Air Freight",
-    body: "Ahmedabad International Airport 90 km — for express samples or urgent smaller consignments worldwide.",
-  },
-];
+import { useReveal } from "../../hooks/useReveal";
+import { PageHero, CtaStrip, SEO } from "../../components";
+import { REGIONS, EXPORT_FEATURES, EXPORT_PROCESS_STEPS, LOGISTICS } from "../../data/exportData";
+import "./Export.css";
 
 export default function Export() {
   const reachRef = useRef(null);
@@ -134,15 +15,16 @@ export default function Export() {
   return (
     <>
       <SEO
-        title="Global Export — Agricultural Tools from India to 50+ Countries"
-        description="Makewell Agri Equipments exports forged agricultural hand tools to 50+ countries across Africa, Middle East, Europe and the Americas. DGFT certified. Full documentation, FCL/LCL container packing, flexible payment terms."
-        canonical="/export"
+        title='Global Export — Agricultural Tools from India to 50+ Countries'
+        description='Makewell Agri Equipments exports forged agricultural hand tools to 50+ countries across Africa, Middle East, Europe and the Americas. DGFT certified. Full documentation, FCL/LCL container packing, flexible payment terms.'
+        canonical='/export'
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "url": "https://www.makewellagriequipments.com/export",
-          "name": "Global Export — Makewell Agri Equipments",
-          "description": "Exporting forged agricultural hand tools from Gujarat, India to distributors in 50+ countries worldwide."
+          url: "https://www.makewellagriequipments.com/export",
+          name: "Global Export — Makewell Agri Equipments",
+          description:
+            "Exporting forged agricultural hand tools from Gujarat, India to distributors in 50+ countries worldwide.",
         }}
       />
       <PageHero
@@ -194,7 +76,7 @@ export default function Export() {
               <div className='panel'>
                 <span className='panel-label'>Export Infrastructure</span>
                 <div className='list-ruled'>
-                  {FEATURES.map((f) => (
+                  {EXPORT_FEATURES.map((f) => (
                     <div className='tool-row-item' key={f}>
                       <span className='item-name'>{f}</span>
                       <span className='item-status'>✓</span>
@@ -229,7 +111,7 @@ export default function Export() {
             </p>
           </div>
           <div className='item-list reveal'>
-            {PROCESS_STEPS.map((step) => (
+            {EXPORT_PROCESS_STEPS.map((step) => (
               <div className='item-row' key={step.num}>
                 <span className='row-num'>{step.num}</span>
                 <div className='icon-box'>{step.icon}</div>

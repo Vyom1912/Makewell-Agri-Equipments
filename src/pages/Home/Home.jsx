@@ -1,112 +1,16 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import Testimonials from "../components/Testimonials";
-import ArrowIcon from "../components/ArrowIcon";
-import SectionHead from "../components/SectionHead";
-import CtaStrip from "../components/CtaStrip";
-import { useReveal } from "../hooks/useReveal";
-import SEO from "../components/SEO";
-
-const HOME_JSON_LD = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.makewellagriequipments.com/#organization",
-      "name": "Makewell Agri Equipments",
-      "url": "https://www.makewellagriequipments.com/",
-      "logo": "https://www.makewellagriequipments.com/mwIcone.png",
-      "description": "Manufacturer and exporter of forged agricultural hand tools — shovels, axes, mattocks, hoes and crowbars — from Himatnagar, Gujarat, India.",
-      "foundingDate": "1996",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Vaktapur",
-        "addressLocality": "Himatnagar",
-        "addressRegion": "Gujarat",
-        "postalCode": "383001",
-        "addressCountry": "IN"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+91-98252-70190",
-        "contactType": "sales",
-        "availableLanguage": ["English", "Hindi", "Gujarati"]
-      },
-      "sameAs": [
-        "https://github.com/Vyom1912/Makewell-Agri-Equipments"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.makewellagriequipments.com/#website",
-      "url": "https://www.makewellagriequipments.com/",
-      "name": "Makewell Agri Equipments",
-      "publisher": { "@id": "https://www.makewellagriequipments.com/#organization" }
-    }
-  ]
-};
-
-const B = `${import.meta.env.BASE_URL}product/`;
-
-/* Product families shown on the home page */
-const HOME_PRODUCTS = [
-  {
-    num: '01',
-    img: `${B}SHOVELS/p64.png`,
-    name: 'Shovels & Spades',
-    tagline: 'Built for every dig.',
-    desc: 'Heat-treated blades in round-point, square-point, trenching and spade profiles. Wood, fibreglass or steel handles.',
-    link: '/products',
-  },
-  {
-    num: '02',
-    img: `${B}AXES/p17.png`,
-    name: 'Axes & Hatchets',
-    tagline: 'Drop-forged for every cut.',
-    desc: 'Felling axes, splitting axes and hatchets — precision-ground edges, hickory or fibreglass handles. Single and double bit.',
-    link: '/products',
-  },
-  {
-    num: '03',
-    img: `${B}PICKS & MATTOCKS/p30.png`,
-    name: 'Pickaxes & Mattocks',
-    tagline: 'Built for the hardest ground.',
-    desc: 'Cutter mattocks, pick mattocks and adzes that break hardpan, clear roots and handle rough earthworks.',
-    link: '/products',
-  },
-  {
-    num: '04',
-    img: `${B}HOES/p41.png`,
-    name: 'Hoes & Rakes',
-    tagline: 'Precision for the field.',
-    desc: 'Draw hoes, stirrup hoes and garden rakes for weeding and cultivation across tropical and arid markets.',
-    link: '/products',
-  },
-  {
-    num: '05',
-    img: `${B}BARS/p27.png`,
-    name: 'Crowbars & Iron Bars',
-    tagline: 'Solid iron, built to last.',
-    desc: 'Hexagonal crowbars, flat pry bars and tamping rods — custom-cut lengths, multiple diameters.',
-    link: '/products',
-  },
-  {
-    num: '06',
-    img: `${B}BINETTES/p1.png`,
-    name: 'Binettes',
-    tagline: 'Precision weeding tools.',
-    desc: 'Forged binettes for precision weeding and soil aeration — popular in European, African and Middle Eastern markets.',
-    link: '/products',
-  },
-  {
-    num: '07',
-    img: `${B}FORGED HAMMERS/p11.png`,
-    name: 'Forged Hammers',
-    tagline: 'Impact, every swing.',
-    desc: 'Drop-forged steel hammers in multiple head weights — construction, demolition and agricultural use.',
-    link: '/products',
-  },
-];
+import { useReveal } from "../../hooks/useReveal";
+import {
+  Testimonials,
+  ArrowIcon,
+  SectionHead,
+  CtaStrip,
+  SEO,
+  HeroSlider,
+} from "../../components";
+import { HOME_PRODUCTS, HIGHLIGHTS, HOME_JSON_LD } from "../../data/homeData";
+import "./Home.css";
 
 function animateCounter(el, target, suffix) {
   let current = 0;
@@ -118,33 +22,9 @@ function animateCounter(el, target, suffix) {
   }, 28);
 }
 
-const HIGHLIGHTS = [
-  {
-    icon: "⚒️",
-    title: "Five Tool Families",
-    desc: "Shovels, axes, mattocks, hoes and crowbars — engineered for real-world field use.",
-    to: "/products",
-    cta: "Browse Products",
-  },
-  {
-    icon: "🎨",
-    title: "Custom Manufacturing",
-    desc: "Your blade shape, handle length, finish and brand — manufactured to your exact spec.",
-    to: "/contact#form",
-    cta: "Start Custom Order",
-  },
-  {
-    icon: "🌐",
-    title: "Global Export",
-    desc: "Trusted by dealers and distributors in 50+ countries across 4 continents.",
-    to: "/export",
-    cta: "View Reach",
-  },
-];
-
 export default function Home() {
-  const rulerRef   = useRef(null);
-  const pageRef    = useRef(null);
+  const rulerRef = useRef(null);
+  const pageRef = useRef(null);
   const productsRef = useRef(null);
   useReveal(pageRef);
   useReveal(productsRef);
@@ -175,8 +55,8 @@ export default function Home() {
   return (
     <div ref={pageRef}>
       <SEO
-        canonical="/"
-        description="Makewell Agri Equipments — manufacturer and exporter of forged agricultural hand tools: shovels, axes, mattocks, hoes, spades and crowbars. Based in Himatnagar, Gujarat, India. Trusted by dealers in 50+ countries."
+        canonical='/'
+        description='Makewell Agri Equipments — manufacturer and exporter of forged agricultural hand tools: shovels, axes, mattocks, hoes, spades and crowbars. Based in Himatnagar, Gujarat, India. Trusted by dealers in 50+ countries.'
         jsonLd={HOME_JSON_LD}
       />
       {/* ── Hero ── */}
@@ -189,7 +69,9 @@ export default function Home() {
               <div className='hero-topline'>
                 <span className='idx'>MW / 2026</span>
                 <span className='rule' />
-                <span className='loc'>Vaktapur, Himatnagar, Gujarat, India</span>
+                <span className='loc'>
+                  Vaktapur, Himatnagar, Gujarat, India
+                </span>
               </div>
               <div className='hero-content'>
                 <h1>
@@ -198,10 +80,11 @@ export default function Home() {
                   <span className='thin'>for the world&apos;s fields.</span>
                 </h1>
                 <p className='lead'>
-                  Makewell Agri Equipments manufactures and exports shovels, axes,
-                  mattocks, hoes and spades — built to standard specification or
-                  forged to a dealer&apos;s exact drawing. Trusted by dealers and
-                  distributors across 50+ countries worldwide.
+                  Makewell Agri Equipments manufactures and exports shovels,
+                  axes, mattocks, hoes and spades — built to standard
+                  specification or forged to a dealer&apos;s exact drawing.
+                  Trusted by dealers and distributors across 50+ countries
+                  worldwide.
                 </p>
                 <div className='hero-actions'>
                   <Link to='/products' className='btn btn-primary'>
@@ -212,10 +95,9 @@ export default function Home() {
                   </Link>
                   <a
                     href={`${import.meta.env.BASE_URL}Make Well Product Catalouge.pdf`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className='btn btn-ghost-light'
-                  >
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='btn btn-ghost-light'>
                     📄 View Catalogue
                   </a>
                 </div>
@@ -223,11 +105,15 @@ export default function Home() {
 
               <div className='hero-ruler-row' ref={rulerRef}>
                 <div className='item'>
-                  <span className='stat-num' data-target='30' data-suffix='+'>30+</span>
+                  <span className='stat-num' data-target='30' data-suffix='+'>
+                    30+
+                  </span>
                   <span className='stat-label'>Years of Excellence</span>
                 </div>
                 <div className='item'>
-                  <span className='stat-num' data-target='50' data-suffix='+'>50+</span>
+                  <span className='stat-num' data-target='50' data-suffix='+'>
+                    50+
+                  </span>
                   <span className='stat-label'>Countries Served</span>
                 </div>
                 <div className='item'>
@@ -241,36 +127,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right — product image showcase */}
-            <div className='hero-visual' aria-hidden='true'>
-              <div className='hero-img-grid'>
-                <div className='hero-img-card hero-img-card--main'>
-                  <img
-                    src={`${import.meta.env.BASE_URL}product/AXES/p17.png`}
-                    alt='Forged Axe — Makewell Agri Equipments'
-                    loading='eager'
-                  />
-                  <span className='hero-img-label'>Felling Axe</span>
-                </div>
-                <div className='hero-img-card hero-img-card--sm'>
-                  <img
-                    src={`${import.meta.env.BASE_URL}product/SHOVELS/p60.png`}
-                    alt='square-Point Shovel — Makewell Agri Equipments'
-                    loading='eager'
-                  />
-                  <span className='hero-img-label'>Square-Point Shovel</span>
-                </div>
-                <div className='hero-img-card hero-img-card--sm'>
-                  <img
-                    src={`${import.meta.env.BASE_URL}product/PICKS & MATTOCKS/p30.png`}
-                    alt='Cutter Mattock — Makewell Agri Equipments'
-                    loading='eager'
-                  />
-                  <span className='hero-img-label'>Cutter Mattock</span>
-                </div>
-              </div>
-              <span className='hero-visual-badge'>DROP-FORGED · HIMATNAGAR, GUJARAT</span>
-            </div>
+            {/* Right — product slider */}
+            <HeroSlider />
           </div>
         </div>
 
@@ -280,7 +138,6 @@ export default function Home() {
         </div>
       </section>
 
-    
       {/* ── Product Range ── */}
       <section className='section section-alt' ref={productsRef}>
         <div className='container'>
@@ -290,18 +147,22 @@ export default function Home() {
                 <span className='idx'>What We Make</span>
                 <span className='rule' />
               </div>
-              <h2>Seven tool families,<br />one forging standard.</h2>
+              <h2>
+                Seven tool families,
+                <br />
+                one forging standard.
+              </h2>
             </div>
             <div>
               <p className='sec-sub'>
-                Every category ships in multiple head shapes, weights and handle types —
-                each one forged to survive real work, adaptable to a dealer&apos;s exact specification.
+                Every category ships in multiple head shapes, weights and handle
+                types — each one forged to survive real work, adaptable to a
+                dealer&apos;s exact specification.
               </p>
               <Link
                 to='/products'
                 className='btn btn-primary btn-sm'
-                style={{ marginTop: '16px', display: 'inline-flex' }}
-              >
+                style={{ marginTop: "16px", display: "inline-flex" }}>
                 Full Product Range <ArrowIcon />
               </Link>
             </div>
@@ -318,12 +179,26 @@ export default function Home() {
                   <h3>{p.name}</h3>
                   <p className='home-product-tagline'>{p.tagline}</p>
                   <p>{p.desc}</p>
+                  <p>
+                    {/* <a
+                      href={p.link}
+                      className='home-product-view-link'
+                      target='_blank'
+                      rel='noopener noreferrer'>
+                      View Range &gt;
+                    </a> */}
+                    <Link
+                      to={p.link}
+                      className='home-product-view-link'
+                      aria-label={`View ${p.name}`}>
+                      View Range &gt;
+                    </Link>
+                  </p>
                 </div>
                 <Link
                   to={p.link}
                   className='btn btn-outline btn-sm home-product-cta'
-                  aria-label={`View ${p.name}`}
-                >
+                  aria-label={`View ${p.name}`}>
                   View Range <ArrowIcon />
                 </Link>
               </div>
@@ -382,8 +257,7 @@ export default function Home() {
         </div>
       </section>
 
-
-  {/* ── Highlights ── */}
+      {/* ── Highlights ── */}
       <section className='section'>
         <div className='container'>
           <SectionHead
@@ -413,7 +287,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
 
       {/* ── Testimonials ── */}
       <Testimonials />

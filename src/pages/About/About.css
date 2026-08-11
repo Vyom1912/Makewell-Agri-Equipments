@@ -1,0 +1,263 @@
+/* ── About page ─────────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-grid .hs-showcase {
+  order: 1;
+}
+.about-grid .about-copy {
+  order: 2;
+}
+.about-copy h2 {
+  font-size: clamp(26px, 3.2vw, 38px);
+  margin-bottom: 20px;
+}
+.about-copy p {
+  color: var(--ink-600);
+  margin-bottom: 18px;
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+.about-copy p strong {
+  color: var(--ink-950);
+}
+
+/* Values grid */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.value-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid transparent;
+  border-radius: var(--r-md);
+  padding: 28px 24px;
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s,
+    border-left-color 0.3s;
+}
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px -12px rgba(18, 14, 6, 0.12);
+  border-left-color: var(--brass);
+}
+.vc-icon {
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+.value-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--ink-950);
+  letter-spacing: -0.01em;
+}
+.value-card p {
+  font-size: 13.5px;
+  color: var(--ink-600);
+  line-height: 1.65;
+}
+
+/* Vertical timeline (.vtl-*) */
+.vtl {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.vtl-item {
+  display: grid;
+  grid-template-columns: 88px 56px 1fr;
+  align-items: stretch;
+  min-height: 100px;
+}
+.vtl-year-col {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 28px 20px 28px 0;
+}
+.vtl-year {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brass-dim);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.vtl-spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.vtl-spine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.vtl-item:first-child .vtl-spine::before {
+  top: 36px;
+}
+.vtl-item:last-child .vtl-spine::before {
+  bottom: 50%;
+}
+.vtl-dot {
+  position: relative;
+  z-index: 1;
+  margin-top: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(182, 154, 85, 0.45);
+  background: var(--slate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    border-color 0.35s var(--ease),
+    background 0.35s var(--ease),
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+}
+.vtl-dot span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--brass-dim);
+  line-height: 1;
+  transition: color 0.3s;
+}
+.vtl-item:hover .vtl-dot {
+  border-color: var(--brass);
+  background: var(--brass);
+  transform: scale(1.2);
+  box-shadow:
+    0 0 0 6px rgba(156, 122, 46, 0.18),
+    0 0 0 12px rgba(156, 122, 46, 0.07);
+}
+.vtl-item:hover .vtl-dot span {
+  color: #fff;
+}
+.vtl-card {
+  margin: 16px 0 16px 20px;
+  padding: 22px 26px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid rgba(182, 154, 85, 0.3);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  position: relative;
+  transition:
+    background 0.35s,
+    border-left-color 0.35s,
+    transform 0.35s var(--ease);
+}
+.vtl-card::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 22px;
+  width: 24px;
+  height: 2px;
+  background: rgba(182, 154, 85, 0.3);
+  transition: background 0.35s;
+}
+.vtl-item:hover .vtl-card {
+  background: rgba(255, 255, 255, 0.09);
+  border-left-color: var(--brass);
+  transform: translateX(6px);
+}
+.vtl-item:hover .vtl-card::before {
+  background: var(--brass);
+}
+.vtl-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+.vtl-card p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.65;
+  max-width: 560px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 52px;
+  }
+  .about-grid .hs-showcase {
+    order: 2;
+  }
+  .about-grid .about-copy {
+    order: 1;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .values-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .vtl-item {
+    grid-template-columns: 60px 44px 1fr;
+    min-height: 80px;
+  }
+  .vtl-year {
+    font-size: 11px;
+  }
+  .vtl-dot {
+    width: 34px;
+    height: 34px;
+    margin-top: 20px;
+  }
+  .vtl-dot span {
+    font-size: 9px;
+  }
+  .vtl-card {
+    padding: 16px 18px;
+    margin: 12px 0 12px 14px;
+  }
+  .vtl-card h4 {
+    font-size: 14.5px;
+  }
+  .vtl-card::before {
+    left: -18px;
+    width: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  .vtl-item {
+    grid-template-columns: 48px 38px 1fr;
+  }
+  .vtl-year-col {
+    padding-right: 10px;
+  }
+  .vtl-year {
+    font-size: 10px;
+  }
+}

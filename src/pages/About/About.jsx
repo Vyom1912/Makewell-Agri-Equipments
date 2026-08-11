@@ -1,65 +1,8 @@
 import { useRef } from "react";
-import { useReveal } from "../hooks/useReveal";
-import PageHero from "../components/PageHero";
-import SectionHead from "../components/SectionHead";
-import CtaStrip from "../components/CtaStrip";
-import SEO from "../components/SEO";
-
-const MILESTONES = [
-  {
-    year: "1996",
-    title: "Founded in Himatnagar",
-    desc: "Makewell Agri Equipments begins operations in the Sabarkantha district forging cluster.",
-  },
-  {
-    year: "2002",
-    title: "First Export Order",
-    desc: "First international shipment dispatched to distributors in East Africa.",
-  },
-  {
-    year: "2010",
-    title: "Capacity Expansion",
-    desc: "New drop-forging presses and heat-treatment furnaces installed to meet growing demand.",
-  },
-  {
-    year: "2015",
-    title: "OEM Programme Launched",
-    desc: "Dedicated private-label and OEM manufacturing service introduced for global brands.",
-  },
-  {
-    year: "2020",
-    title: "40+ Countries Reached",
-    desc: "Active distribution across Africa, Middle East, South Asia, Europe and the Americas.",
-  },
-  {
-    year: "2025",
-    title: "30 Years of Excellence",
-    desc: "Over two decades of consistent quality, trusted by dealers and distributors worldwide.",
-  },
-];
-
-const VALUES = [
-  {
-    icon: "🔩",
-    title: "Craft & Precision",
-    desc: "Every tool head is drop-forged, heat-treated and ground to exact dimensional tolerances — not just cast and painted.",
-  },
-  {
-    icon: "🤝",
-    title: "Dealer Partnership",
-    desc: "We work as a long-term supply partner, not just a one-time vendor. Clear pricing, reliable lead times.",
-  },
-  {
-    icon: "🎨",
-    title: "Customisation First",
-    desc: "Your market has specific needs. We engineer tools to your spec — blade angle, weight, handle, finish, branding.",
-  },
-  {
-    icon: "🌍",
-    title: "Global Thinking",
-    desc: "Our export team understands international compliance, documentation and logistics across four continents.",
-  },
-];
+import { useReveal } from "../../hooks/useReveal";
+import { PageHero, CtaStrip, SEO, HeroSlider } from "../../components";
+import { MILESTONES, VALUES } from "../../data/aboutData";
+import "./About.css";
 
 export default function About() {
   const storyRef = useRef(null);
@@ -72,26 +15,27 @@ export default function About() {
   return (
     <>
       <SEO
-        title="About Makewell — Forged Agricultural Tools Manufacturer, Gujarat India"
-        description="Learn about Makewell Agri Equipments — a 30-year forging tradition from Himatnagar, Sabarkantha, Gujarat. Drop-forged agricultural hand tools exported to 50+ countries worldwide."
-        canonical="/about"
+        title='About Makewell — Forged Agricultural Tools Manufacturer, Gujarat India'
+        description='Learn about Makewell Agri Equipments — a 30-year forging tradition from Himatnagar, Sabarkantha, Gujarat. Drop-forged agricultural hand tools exported to 50+ countries worldwide.'
+        canonical='/about'
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "AboutPage",
-          "url": "https://www.makewellagriequipments.com/about",
-          "name": "About Makewell Agri Equipments",
-          "description": "30-year manufacturer and exporter of forged agricultural hand tools from Himatnagar, Gujarat, India.",
-          "mainEntity": {
+          url: "https://www.makewellagriequipments.com/about",
+          name: "About Makewell Agri Equipments",
+          description:
+            "30-year manufacturer and exporter of forged agricultural hand tools from Himatnagar, Gujarat, India.",
+          mainEntity: {
             "@type": "Organization",
-            "name": "Makewell Agri Equipments",
-            "foundingDate": "1996",
-            "address": {
+            name: "Makewell Agri Equipments",
+            foundingDate: "1996",
+            address: {
               "@type": "PostalAddress",
-              "addressLocality": "Himatnagar",
-              "addressRegion": "Gujarat",
-              "addressCountry": "IN"
-            }
-          }
+              addressLocality: "Himatnagar",
+              addressRegion: "Gujarat",
+              addressCountry: "IN",
+            },
+          },
         }}
       />
       <PageHero
@@ -104,16 +48,7 @@ export default function About() {
       <section className='section' ref={storyRef}>
         <div className='container'>
           <div className='about-grid'>
-            <div className='about-visual reveal'>
-              <div className='home-product-photo'>
-                <img
-                  src={`${import.meta.env.BASE_URL}product/SHOVELS/p63.png`}
-                  alt='Makewell SHOVELS — drop-forged in Himatnagar, Gujarat'
-                  loading='lazy'
-                />
-                <span className='tag'>MW — SHOVELS</span>
-              </div>
-            </div>
+            <HeroSlider />
 
             <div className='about-copy reveal delay-2'>
               <div className='eyebrow'>
