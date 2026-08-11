@@ -1588,41 +1588,6 @@ export default function Products() {
         // ctaHref={CATALOG_PDF}
       />
 
-      {/* ── 1. Product range list ── */}
-      {/* <section className="section" ref={listRef}>
-        <div className="container">
-          <div className="sec-head sec-head--row reveal">
-            <div>
-              <div className="eyebrow"><span className="idx">Product Range</span><span className="rule" /></div>
-              <h2>Five tool families,<br />one forging standard.</h2>
-            </div>
-            <p className="sec-sub">Each category ships in multiple head shapes, weights and handle types — every one adaptable to a dealer&apos;s exact specification.</p>
-          </div>
-          <div className="item-list reveal">
-            {PRODUCTS.map((p) => (
-              <div className="item-row" key={p.num}>
-                <span className="row-num">{p.num}</span>
-                <div className="icon-box tool-img-box">
-                  {p.img ? (
-                    <img src={p.img} alt={p.name} loading="lazy" />
-                  ) : (
-                    <p.SvgComp />
-                  )}
-                </div>
-                <div className="info">
-                  <h3>{p.name}</h3>
-                  <p>{p.desc}</p>
-                  <ul className="specs-list">
-                    {p.specs.map((s) => <li className="tag-chip" key={s}>{s}</li>)}
-                  </ul>
-                  <Link to="/contact#form" className="row-link">Request Sample →</Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       {/* ── 2. Tool family browser — tabs + detail panel ── */}
       {/* <section className="section section-dark" ref={familyRef}>
         <div className="container">
@@ -1910,7 +1875,7 @@ export default function Products() {
       </section>
 
       {/* ── 4. Custom order banner ── */}
-      <section className='section'>
+      <section className='section product-custom-banner'>
         <div className='container'>
           <div className='custom-banner'>
             <div className='txt'>
@@ -1935,7 +1900,7 @@ export default function Products() {
                 className='btn btn-on-dark'>
                 📄 View Catalogue <ArrowIcon />
               </a>
-              <Link to='/contact#form' className='btn btn-ghost-light'>
+              <Link to='/contact#form' className='btn btn-primary'>
                 Start Custom Order
               </Link>
             </div>

@@ -53,7 +53,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={pageRef}>
+    <div ref={pageRef} className='home-page'>
       <SEO
         canonical='/'
         description='Makewell Agri Equipments — manufacturer and exporter of forged agricultural hand tools: shovels, axes, mattocks, hoes, spades and crowbars. Based in Himatnagar, Gujarat, India. Trusted by dealers in 50+ countries.'
@@ -211,7 +211,7 @@ export default function Home() {
       <section className='section section-alt'>
         <div className='container'>
           <div className='about-snippet-grid'>
-            <div className='reveal'>
+            <div className='reveal home-about-grid-1'>
               <div className='home-product-photo'>
                 <img
                   src={`${import.meta.env.BASE_URL}product/SHOVELS/p63.png`}
@@ -221,7 +221,7 @@ export default function Home() {
                 <span className='tag'>MW — FORGED SHOVELS</span>
               </div>
             </div>
-            <div className='reveal delay-2'>
+            <div className='reveal delay-2 home-about-grid-2'>
               <div className='eyebrow'>
                 <span className='idx'>About Us</span>
                 <span className='rule' />

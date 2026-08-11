@@ -13,8 +13,8 @@ const SLIDES = [
   {
     img: `${B}SHOVELS/p60.png`,
     eyebrow: "Shovels & Spades",
-    title: "Round-Point Shovel",
-    alt: "Round-Point Shovel — Makewell Agri Equipments",
+    title: "Square-Point Shovel",
+    alt: "Square-Point Shovel — Makewell Agri Equipments",
   },
   {
     img: `${B}PICKS & MATTOCKS/p30.png`,
@@ -143,8 +143,9 @@ export default function HeroSlider() {
             className={`hs-thumb${active === i ? " active" : ""}`}
             onClick={() => handleGo(i)}
             aria-label={s.title}>
-              <div className="hs-thumbs-img-bg">
-            <img src={s.img} alt='' aria-hidden='true' loading='lazy' /></div>
+            <div className='hs-thumbs-img-bg'>
+              <img src={s.img} alt='' aria-hidden='true' loading='lazy' />
+            </div>
           </button>
         ))}
       </div>

@@ -1,7 +1,12 @@
 import { useRef } from "react";
 import { useReveal } from "../../hooks/useReveal";
 import { PageHero, CtaStrip, SEO } from "../../components";
-import { REGIONS, EXPORT_FEATURES, EXPORT_PROCESS_STEPS, LOGISTICS } from "../../data/exportData";
+import {
+  REGIONS,
+  EXPORT_FEATURES,
+  EXPORT_PROCESS_STEPS,
+  LOGISTICS,
+} from "../../data/exportData";
 import "./Export.css";
 
 export default function Export() {
@@ -13,7 +18,7 @@ export default function Export() {
   useReveal(logisticRef);
 
   return (
-    <>
+    <div className='export-page'>
       <SEO
         title='Global Export — Agricultural Tools from India to 50+ Countries'
         description='Makewell Agri Equipments exports forged agricultural hand tools to 50+ countries across Africa, Middle East, Europe and the Americas. DGFT certified. Full documentation, FCL/LCL container packing, flexible payment terms.'
@@ -149,7 +154,7 @@ export default function Export() {
               short and costs predictable.
             </p>
           </div>
-          <div className='ruled-grid ruled-grid-4 reveal'>
+          <div className='ruled-grid export-logistic-grid reveal'>
             {LOGISTICS.map((l) => (
               <div className='logi-card logi-card--dark' key={l.title}>
                 <span className='logi-icon'>{l.icon}</span>
@@ -169,6 +174,6 @@ export default function Export() {
         secondLabel='📄 Download Catalogue'
         secondHref={`${import.meta.env.BASE_URL}Make Well Product Catalouge.pdf`}
       />
-    </>
+    </div>
   );
 }

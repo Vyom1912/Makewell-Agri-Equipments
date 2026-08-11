@@ -29,7 +29,7 @@ export const HOME_PRODUCTS = [
   },
   {
     num: "04",
-    img: `${B}HOES/p41.png`,
+    img: `${B}HOES/p43.png`,
     name: "Hoes & Rakes",
     tagline: "Precision for the field.",
     desc: "Draw hoes, stirrup hoes and garden rakes for weeding and cultivation across tropical and arid markets.",
@@ -94,7 +94,8 @@ export const HOME_JSON_LD = {
       name: "Makewell Agri Equipments",
       url: "https://www.makewellagriequipments.com/",
       logo: "https://www.makewellagriequipments.com/mwIcone.png",
-      description: "Manufacturer and exporter of forged agricultural hand tools — shovels, axes, mattocks, hoes and crowbars — from Himatnagar, Gujarat, India.",
+      description:
+        "Manufacturer and exporter of forged agricultural hand tools — shovels, axes, mattocks, hoes and crowbars — from Himatnagar, Gujarat, India.",
       foundingDate: "1996",
       address: {
         "@type": "PostalAddress",
@@ -117,7 +118,9 @@ export const HOME_JSON_LD = {
       "@id": "https://www.makewellagriequipments.com/#website",
       url: "https://www.makewellagriequipments.com/",
       name: "Makewell Agri Equipments",
-      publisher: { "@id": "https://www.makewellagriequipments.com/#organization" },
+      publisher: {
+        "@id": "https://www.makewellagriequipments.com/#organization",
+      },
     },
   ],
 };
