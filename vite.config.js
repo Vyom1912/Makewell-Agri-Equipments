@@ -5,8 +5,8 @@ import react from "@vitejs/plugin-react";
 // Set VITE_BASE in the deployment environment, or leave unset for "/"
 export default defineConfig({
   plugins: [react()],
-  // preview: { port: 4173 },
-  // server: { historyApiFallback: true },
-  // base: process.env.VITE_BASE ?? "/",
-  base: "/",
+  preview: { port: 4173 },
+  server: { historyApiFallback: true },
+  base: process.env.VITE_BASE ?? "/",
+  // base: "/",
 });
