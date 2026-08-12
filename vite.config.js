@@ -8,4 +8,5 @@ export default defineConfig({
   preview: { port: 4173 },
   server: { historyApiFallback: true },
   base: process.env.VITE_BASE ?? "/",
+  // base: "/",
 });

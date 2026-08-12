@@ -1,0 +1,89 @@
+/* ── Page Loader overlay ────────────────────────────────────── */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--slate);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+
+  /* fade-out transition */
+  opacity: 1;
+  transition: opacity 0.5s var(--ease);
+}
+.page-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Brand wordmark above the spinner */
+.pl-brand {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pl-brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+.pl-brand-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--brass-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
+}
+
+/* The corner-bracket spinner — adapted from the l7 pattern */
+.loader {
+  width: 52px;
+  aspect-ratio: 1;
+
+  /* corner top-left */
+  --g1: conic-gradient(from  90deg at 3px 3px,  #0000 90deg, var(--brass) 0);
+  /* corner bottom-right */
+  --g2: conic-gradient(from -90deg at 22px 22px, #0000 90deg, var(--brass) 0);
+
+  background:
+    var(--g1), var(--g1), var(--g1),
+    var(--g2), var(--g2), var(--g2);
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  animation: pl-spin 1.5s infinite;
+  filter: drop-shadow(0 0 8px rgba(138, 104, 32, 0.55));
+}
+
+@keyframes pl-spin {
+  0%   { background-position: 0    0,    0 100%, 100% 100%; }
+  25%  { background-position: 100% 0,    0 100%, 100% 100%; }
+  50%  { background-position: 100% 0,    0 0,    100% 100%; }
+  75%  { background-position: 100% 0,    0 0,    0    100%; }
+  100% { background-position: 100% 100%, 0 0,    0    100%; }
+}
+
+/* Tagline below spinner */
+.pl-tagline {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}

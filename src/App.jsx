@@ -10,7 +10,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 // import Contact  from './pages/Contact';
 // import NotFound from './pages/NotFound';
 
-import { Navbar, Footer } from "./components";
+import { Navbar, Footer, PageLoader } from "./components";
 import {
   Home,
   About,
@@ -51,6 +51,7 @@ function AppShell() {
 
   return (
     <>
+      <PageLoader />
       <Navbar />
 
       <main>
